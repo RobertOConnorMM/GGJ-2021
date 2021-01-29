@@ -14,7 +14,8 @@ public class PlayerMovement : MonoBehaviour
   void Start()
   {
     player = GetComponent<PlayerManager>();
-    player.GetActions().Player.Move.performed += OnMove;
+    player.GetActions().Player.Move.performed += OnMoveStarted;
+    player.GetActions().Player.Move.canceled += OnMoveCanceled;
   }
 
   // Update is called once per frame
@@ -22,17 +23,22 @@ public class PlayerMovement : MonoBehaviour
   {
     transform.position = Vector3.SmoothDamp(
       transform.position,
-      transform.position + (targetPosition.normalized * movementSpeed * Time.deltaTime),
+      transform.position + (targetPosition * movementSpeed * Time.deltaTime),
       ref velocity,
       damping
     );
   }
 
-  private void OnMove(InputAction.CallbackContext context)
+  private void OnMoveStarted(InputAction.CallbackContext context)
   {
     var input = context.ReadValue<Vector2>();
 
     targetPosition.x = input.x;
     targetPosition.z = input.y;
+  }
+
+  private void OnMoveCanceled(InputAction.CallbackContext context)
+  {
+    targetPosition = Vector2.zero;
   }
 }
