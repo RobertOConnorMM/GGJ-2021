@@ -48,7 +48,6 @@ Corridor/Library/metadata/
 # Additional ignores #
 # ============ #
 [Ll]ogs/
-Assets/Scenes/
 UserSettings/
-!Assets/Scenes/SampleScene*
-!Assets/Scenes/Level*
+Assets/Scenes/
+!Assets/Scenes/MainScene*
