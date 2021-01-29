@@ -11,7 +11,7 @@ sysinfo.txt
 /Assets/AssetStoreTools*
 *.apk
 *.unitypackage
- 
+
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
@@ -29,7 +29,7 @@ sysinfo.txt
 .consulo/
 /*.tmp
 /*.svd
- 
+
 # ============ #
 # OS generated #
 # ============ #
@@ -43,3 +43,11 @@ ehthumbs.db
 [Dd]esktop.ini
 Corridor/Library/ShaderCache/
 Corridor/Library/metadata/
+
+# ============ #
+# Additional ignores #
+# ============ #
+[Ll]ogs/
+Assets/Scenes/
+!Assets/Scenes/SampleScene*
+!Assets/Scenes/Level*
