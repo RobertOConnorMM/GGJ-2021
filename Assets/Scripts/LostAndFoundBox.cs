@@ -12,18 +12,19 @@ public class LostAndFoundBox : MonoBehaviour {
     private float secondsForRegeneratingItem = 10f;
 
     void Start () {
-        interactionUI.SetActive(false);
+        interactionUI.SetActive (false);
         weaponItemIds = new List<int> ();
-        AddRandomItemToBox();
-        AddRandomItemToBox();
-        AddRandomItemToBox();
-        AddRandomItemToBox();
+        AddRandomItemToBox ();
+        AddRandomItemToBox ();
+        AddRandomItemToBox ();
+        AddRandomItemToBox ();
+        AddRandomItemToBox ();
 
         StartCoroutine (RegenerateItemInBox ());
     }
 
-    private void AddRandomItemToBox() {
-        int newItemId = Random.Range (0, 5);
+    private void AddRandomItemToBox () {
+        int newItemId = Random.Range (0, 4);
         weaponItemIds.Add (newItemId);
     }
 
@@ -37,7 +38,7 @@ public class LostAndFoundBox : MonoBehaviour {
         }
     }
 
-    public bool hasItems() {
+    public bool hasItems () {
         return weaponItemIds.Count > 0;
     }
 
@@ -45,7 +46,7 @@ public class LostAndFoundBox : MonoBehaviour {
         yield return new WaitForSeconds (secondsForRegeneratingItem);
 
         if (weaponItemIds.Count < 5) {
-            AddRandomItemToBox();
+            AddRandomItemToBox ();
             print ("New item added to box!");
         } else {
             print ("Box is already full.");
@@ -54,7 +55,13 @@ public class LostAndFoundBox : MonoBehaviour {
         StartCoroutine (RegenerateItemInBox ());
     }
 
-    public void SetShowingUI(bool isShowing) {
-        interactionUI.SetActive(isShowing);
+    public void ShowUI () {
+        if (hasItems ()) {
+            interactionUI.SetActive (true);
+        }
+    }
+
+    public void HideUI () {
+        interactionUI.SetActive (false);
     }
 }

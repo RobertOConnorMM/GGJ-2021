@@ -11,26 +11,26 @@ public class PlayerCombat : MonoBehaviour {
     private PlayerManager player;
 
     void Start () {
-        player = GetComponent<PlayerManager>();
-        player.GetActions().Player.Action.performed += OnAction;
+        player = GetComponent<PlayerManager> ();
+        player.GetActions ().Player.Action.performed += OnAction;
     }
 
-    private void OnAction(InputAction.CallbackContext context) {
-        if (nearBox && !hasTakenItem && box.hasItems()) {
+    private void OnAction (InputAction.CallbackContext context) {
+        if (nearBox && !hasTakenItem && box.hasItems ()) {
             int newItemId = box.TakeItem ();
             Vector3 itemPos = transform.position;
-            itemPos.y += 1f;
+            itemPos.y += 3f;
 
             GameObject gameObjectPrefab;
-            if(newItemId == WeaponIDs.UMBRELLA) {
-                gameObjectPrefab = weaponScriptableObject.wallet;
-            } else if(newItemId == WeaponIDs.TEDDY) {
+            if (newItemId == WeaponIDs.UMBRELLA) {
+                gameObjectPrefab = weaponScriptableObject.umbrella;
+            } else if (newItemId == WeaponIDs.TEDDY) {
                 gameObjectPrefab = weaponScriptableObject.teddy;
-            } else if(newItemId == WeaponIDs.BOOK) {
+            } else if (newItemId == WeaponIDs.BOOK) {
                 gameObjectPrefab = weaponScriptableObject.book;
-            } else if(newItemId == WeaponIDs.WALLET) {
+            } else if (newItemId == WeaponIDs.WALLET) {
                 gameObjectPrefab = weaponScriptableObject.wallet;
-            } else if(newItemId == WeaponIDs.IPAD) {
+            } else if (newItemId == WeaponIDs.IPAD) {
                 gameObjectPrefab = weaponScriptableObject.ipad;
             } else {
                 gameObjectPrefab = weaponScriptableObject.ipad;
@@ -38,22 +38,23 @@ public class PlayerCombat : MonoBehaviour {
 
             GameObject itemObject = Instantiate (gameObjectPrefab, itemPos, Quaternion.identity);
             itemObject.transform.parent = transform;
+            Destroy(itemObject, 2f);
             hasTakenItem = true;
-            box.SetShowingUI (false);
+            box.HideUI ();
         }
     }
 
     private void OnCollisionEnter (Collision collision) {
         if (collision.gameObject.tag == "LostAndFoundBox") {
             box = collision.gameObject.GetComponent<LostAndFoundBox> ();
-            box.SetShowingUI (true);
+            box.ShowUI ();
             nearBox = true;
         }
     }
 
     private void OnCollisionExit (Collision collision) {
         if (collision.gameObject.tag == "LostAndFoundBox") {
-            box.SetShowingUI (false);
+            box.HideUI ();
             box = null;
             nearBox = false;
             hasTakenItem = false;
