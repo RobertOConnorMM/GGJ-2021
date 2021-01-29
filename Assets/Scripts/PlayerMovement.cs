@@ -1,49 +1,38 @@
 using UnityEngine;
-
-public class InputStrategy : MonoBehaviour
-{
-
-}
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+  public Player player;
+
   public float movementSpeed = 750f;
   public float damping = 1f;
 
   private Vector3 targetPosition = Vector3.zero;
   private Vector3 velocity = Vector3.zero;
 
+  void Awake()
+  {
+    player = GetComponent<Player>();
+    player.PlayerActions.Move.performed += OnMove;
+  }
+
   // Update is called once per frame
   void Update()
   {
-    targetPosition = Vector3.zero;
-
-    // TODO Choose strategy
-    if (Input.GetKey(KeyCode.W))
-    {
-      targetPosition += Vector3.forward;
-    }
-
-    if (Input.GetKey(KeyCode.A))
-    {
-      targetPosition += Vector3.left;
-    }
-
-    if (Input.GetKey(KeyCode.S))
-    {
-      targetPosition += Vector3.back;
-    }
-
-    if (Input.GetKey(KeyCode.D))
-    {
-      targetPosition += Vector3.right;
-    }
-
     transform.position = Vector3.SmoothDamp(
       transform.position,
       transform.position + (targetPosition.normalized * movementSpeed * Time.deltaTime),
       ref velocity,
       damping
     );
+  }
+
+  private void OnMove(InputAction.CallbackContext context)
+  {
+    var input = context.ReadValue<Vector2>();
+
+    targetPosition.x = input.x;
+    targetPosition.z = input.y;
   }
 }
