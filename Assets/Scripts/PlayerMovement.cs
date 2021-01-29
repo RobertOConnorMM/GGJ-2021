@@ -1,8 +1,13 @@
 using UnityEngine;
 
+public class InputStrategy : MonoBehaviour
+{
+
+}
+
 public class PlayerMovement : MonoBehaviour
 {
-  public float movementSpeed = 1750f;
+  public float movementSpeed = 750f;
   public float damping = 1f;
 
   private Vector3 targetPosition = Vector3.zero;
@@ -36,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     transform.position = Vector3.SmoothDamp(
       transform.position,
-      transform.position + (targetPosition * movementSpeed * Time.deltaTime),
+      transform.position + (targetPosition.normalized * movementSpeed * Time.deltaTime),
       ref velocity,
       damping
     );
