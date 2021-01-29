@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-  public Player player;
+  public PlayerManager player;
 
   public float movementSpeed = 750f;
   public float damping = 1f;
@@ -11,10 +11,10 @@ public class PlayerMovement : MonoBehaviour
   private Vector3 targetPosition = Vector3.zero;
   private Vector3 velocity = Vector3.zero;
 
-  void Awake()
+  void Start()
   {
-    player = GetComponent<Player>();
-    player.PlayerActions.Move.performed += OnMove;
+    player = GetComponent<PlayerManager>();
+    player.GetActions().Player.Move.performed += OnMove;
   }
 
   // Update is called once per frame

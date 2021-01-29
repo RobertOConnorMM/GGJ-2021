@@ -5,17 +5,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerRotation : MonoBehaviour
 {
-  private Player player;
-
-  public InputActions inputActions;
+  private PlayerManager player;
 
   public float rotationSpeed = 5f;
 
-  void Awake()
+  void Start()
   {
-    player = GetComponent<Player>();
-    player.PlayerActions.MousePosition.performed += OnMousePosition;
-    player.PlayerActions.Look.performed += OnLook;
+    player = GetComponent<PlayerManager>();
+    //player.GetActions().Player.MousePosition.performed += OnMousePosition;
+    //player.GetActions().Player.Look.performed += OnLook;
   }
 
 
