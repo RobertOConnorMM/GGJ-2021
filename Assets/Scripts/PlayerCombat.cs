@@ -9,13 +9,10 @@ public class PlayerCombat : MonoBehaviour
   public float maxSpeed = 15f;
   public float maxChargeTime = .6f;
   private float chargeTimeStart;
-
-  private bool nearBox = false;
-
-  private LostAndFoundBox box = null;
+  private bool nearBox;
+  private LostAndFoundBox box;
   [SerializeField] WeaponScriptableObject weaponScriptableObject;
   private PlayerManager player;
-
   private GameObject grabbedItem;
 
   void Start()
@@ -25,27 +22,6 @@ public class PlayerCombat : MonoBehaviour
     player.GetActions().Player.Fire.started += OnFireStart;
     player.GetActions().Player.Fire.canceled += OnFireCanceled;
   }
-
-  private void OnCollisionEnter(Collision collision)
-  {
-    if (collision.gameObject.tag == "LostAndFoundBox")
-    {
-      box = collision.gameObject.GetComponent<LostAndFoundBox>();
-      box.ShowUI();
-      nearBox = true;
-    }
-  }
-
-  private void OnCollisionExit(Collision collision)
-  {
-    if (collision.gameObject.tag == "LostAndFoundBox")
-    {
-      box.HideUI();
-      box = null;
-      nearBox = false;
-    }
-  }
-
 
   private void OnAction(InputAction.CallbackContext context)
   {
@@ -89,6 +65,18 @@ public class PlayerCombat : MonoBehaviour
     rigidBody.isKinematic = true;
 
     box.HideUI();
+  }
+
+  public void OnNearBox(LostAndFoundBox box)
+  {
+    nearBox = true;
+    this.box = box;
+  }
+
+  public void OnLeaveBox()
+  {
+    box = null;
+    nearBox = false;
   }
 
   private void OnFireStart(InputAction.CallbackContext context)
