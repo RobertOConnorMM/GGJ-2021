@@ -10,6 +10,8 @@ public class PlayerManager : MonoBehaviour
   public Transform leftHand;
   public Transform rightHand;
 
+  public GameObject flashlight;
+
   void Awake()
   {
     playerActions = new PlayerInputActions();
@@ -39,4 +41,8 @@ public class PlayerManager : MonoBehaviour
     return transform;
   }
 
+  public void SetFlashlightOn(bool isOn) {
+    flashlight.SetActive(isOn);
+    UIManager.Instance.OnColletFlashLight();
+  }
 }

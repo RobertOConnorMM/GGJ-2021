@@ -175,6 +175,7 @@ MonoBehaviour:
   character: {fileID: 8413101925268262526}
   leftHand: {fileID: 8015459009437864096}
   rightHand: {fileID: 9167724280363262823}
+  flashlight: {fileID: 4092518725626636573}
 --- !u!114 &2943935162696185501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,6 +466,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29827a4dd1c457c429b237001c9f6f7b, type: 3}
+--- !u!1 &4092518725626636573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 29827a4dd1c457c429b237001c9f6f7b, type: 3}
+  m_PrefabInstance: {fileID: 3750062290814178380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3711068027948397479 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 29827a4dd1c457c429b237001c9f6f7b, type: 3}

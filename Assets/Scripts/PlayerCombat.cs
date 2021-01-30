@@ -25,6 +25,11 @@ public class PlayerCombat : MonoBehaviour
 
   private void OnAction(InputAction.CallbackContext context)
   {
+    if(UIManager.Instance.isLevelTutorial()) {
+      UIManager.Instance.StartGame();
+      return;
+    }
+
     if (!nearBox && grabbedItem != null && !box.hasItems())
     {
       return;
