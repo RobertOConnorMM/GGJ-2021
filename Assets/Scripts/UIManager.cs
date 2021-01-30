@@ -7,7 +7,6 @@ using System;
 
 public class UIManager : MonoBehaviour
 {
-  public int currentWave = 1;
   public int countdown = 30;
   public TextMeshProUGUI timerText;
   public TextMeshProUGUI instructionText;
