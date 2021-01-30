@@ -27,11 +27,19 @@ public class PauseManager : MonoBehaviour
 
     public void OnRestartPress() {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(1);
+        if(UIManager.Instance.isLevelTutorial()) {
+            SceneManager.LoadScene(0);
+        } else {
+            SceneManager.LoadScene(1);
+        }
     }
 
     public void OnExitPress() {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        if(UIManager.Instance.isLevelTutorial()) {
+            Application.Quit();
+        } else {
+            SceneManager.LoadScene(0);
+        }
     }
 }
