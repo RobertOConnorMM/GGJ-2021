@@ -7,10 +7,13 @@ using System;
 
 public class UIManager : MonoBehaviour
 {
-  public int currentWave = 1;
-  public int countdown = 30;
+  public int countdown = 60;
+  public int waveCooldown = 10;
+  private int currWaveCooldown = 10;
   public TextMeshProUGUI timerText;
   public TextMeshProUGUI instructionText;
+  public TextMeshProUGUI waveText;
+  public TextMeshProUGUI waveCooldownText;
 
   [SerializeField]
   private GameObject winPanel, wavePanel, fadePanel;
@@ -33,17 +36,25 @@ public class UIManager : MonoBehaviour
   {
     winPanel?.SetActive(false);
     fadePanel?.SetActive(true);
+    waveText.text = "";
+    waveCooldownText.text = "";
 
     if (!isTutorial)
     {
       StartCoroutine(UpdateCountdown());
+      waveText.text = "Wave 1";
     }
+    currWaveCooldown = waveCooldown;
   }
 
   public void ShowWinPanel()
   {
     Time.timeScale = 0;
     winPanel.SetActive(true);
+  }
+
+  public void UpdateWaveText(int waveNum) {
+      waveText.text = "Wave " + waveNum;
   }
 
   private void UpdateTimerText()
@@ -65,6 +76,24 @@ public class UIManager : MonoBehaviour
     else
     {
       ShowWinPanel();
+    }
+  }
+
+    public void StartWaveCooldown() {
+        currWaveCooldown = waveCooldown;
+        StartCoroutine(UpdateWaveCooldown());
+    }
+
+  private IEnumerator UpdateWaveCooldown()
+  {
+    yield return new WaitForSeconds(1f);
+    currWaveCooldown -= 1;
+    waveCooldownText.text = "Next wave in... "+currWaveCooldown+"s" ;
+    if(currWaveCooldown > 0) {
+        StartCoroutine(UpdateWaveCooldown());
+    } else {
+        waveCooldownText.text = "";
+        WaveManager.Instance.UpdateWave();
     }
   }
 

@@ -57,7 +57,8 @@ public class EnemyMovement : MonoBehaviour
 
     if (currentHealth <= 0)
     {
-      Destroy(gameObject);
+        WaveManager.Instance.AddEnemyKillCount();
+        Destroy(gameObject);
     }
   }
 
