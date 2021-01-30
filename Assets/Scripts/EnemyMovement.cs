@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-
-  public float movementSpeed = 200f;
-  public float damping = 1f;
   public float health = 3f;
+  public float movementSpeed = 20f;
+  public float knockbackForce = 10f;
+  public float knockbackRadius = 5f;
+  public float knockbackUpwardsMomentum = 1f;
 
   private float currentHealth;
 
   private Transform target;
-  private Rigidbody body;
+  private Rigidbody rigidBody;
   private AudioSource audioSource;
   [SerializeField]
   private AudioClip hurtSound;
@@ -24,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
 
   void Start()
   {
-    body = GetComponent<Rigidbody>();
+    rigidBody = GetComponent<Rigidbody>();
     audioSource = GetComponent<AudioSource>();
     PlayerManager playerManager = (PlayerManager)FindObjectOfType(typeof(PlayerManager));
     target = playerManager.getTransform();
@@ -34,15 +35,18 @@ public class EnemyMovement : MonoBehaviour
 
   void Update()
   {
-    float step = movementSpeed * Time.deltaTime;
-    body.transform.position = Vector3.MoveTowards(transform.position, target.position, step);
-    body.transform.LookAt(target);
+    var translate = target.position - (transform.position + Vector3.forward);
+
+    rigidBody.AddForce(
+      translate.normalized * movementSpeed * Time.deltaTime,
+      ForceMode.VelocityChange
+    );
+
+    rigidBody.transform.LookAt(target);
   }
 
   public void OnHit(float damage)
   {
-    Debug.Log(damage);
-
     if (isDead)
     {
       return;
@@ -53,7 +57,8 @@ public class EnemyMovement : MonoBehaviour
 
     if (currentHealth <= 0)
     {
-      Destroy(gameObject);
+        WaveManager.Instance.AddEnemyKillCount();
+        Destroy(gameObject);
     }
   }
 
@@ -63,10 +68,6 @@ public class EnemyMovement : MonoBehaviour
     {
       var weaponItem = collision.gameObject.GetComponent<WeaponItem>();
       var rigidbody = collision.gameObject.GetComponent<Rigidbody>();
-
-      Debug.Log(rigidbody.velocity.x);
-      Debug.Log(rigidbody.velocity.y);
-      Debug.Log(rigidbody.velocity.magnitude);
 
       if (Mathf.Abs(rigidbody.velocity.magnitude) < 4f)
       {

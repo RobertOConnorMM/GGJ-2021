@@ -20,6 +20,12 @@ public class EnemySpawn : MonoBehaviour
     GameObject itemObject = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
   }
 
+  public void StartNextWave(int waveNum) {
+    spawnLimit = waveNum;
+    spawnCount = 0;
+    StartCoroutine(SpawnEnemyTimer());
+  }
+
   private IEnumerator SpawnEnemyTimer()
   {
     yield return new WaitForSeconds(spawnFrequency);
