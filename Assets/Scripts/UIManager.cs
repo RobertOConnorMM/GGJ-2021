@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+
+    public int currentWave = 1;
+
     [SerializeField]
     private GameObject winPanel, wavePanel, fadePanel;
     [SerializeField]
-    private TextMeshProUGUI timerText, instructionText;
+    private TextMeshProUGUI timerText, instructionText, waveText;
     private int countdown = 30;
 
     [SerializeField]
