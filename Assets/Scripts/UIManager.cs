@@ -7,76 +7,93 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
 
-    public int currentWave = 1;
+  public int currentWave = 1;
+  public int countdown = 30;
 
-    [SerializeField]
-    private GameObject winPanel, wavePanel, fadePanel;
-    [SerializeField]
-    private TextMeshProUGUI timerText, instructionText, waveText;
-    private int countdown = 30;
+  [SerializeField]
+  private readonly GameObject winPanel, wavePanel, fadePanel;
 
-    [SerializeField]
-    private bool isTutorial = false;
-    public bool hasFlashlight = false;
-    public static UIManager Instance { get; private set; }
+  [SerializeField]
+  private readonly TextMeshProUGUI timerText, instructionText;
 
-    public void Awake () {
-        Instance = this;
-        if(!isTutorial) {
-            UpdateTimerText();
-        }
-    }
+  [SerializeField]
+  private bool isTutorial;
+  public bool hasFlashlight;
+  public static UIManager Instance { get; private set; }
 
-    void Start()
+  public void Awake()
+  {
+    Instance = this;
+    if (!isTutorial)
     {
-        winPanel.SetActive(false);
-        fadePanel.SetActive(true);
-        if(!isTutorial) {
-            StartCoroutine(UpdateCountdown());
-        }
+      UpdateTimerText();
     }
+  }
 
-    public void ShowWinPanel() {
-        Time.timeScale = 0;
-        winPanel.SetActive(true);
+  void Start()
+  {
+    winPanel.SetActive(false);
+    fadePanel.SetActive(true);
+    if (!isTutorial)
+    {
+      StartCoroutine(UpdateCountdown());
     }
+  }
 
-    private void UpdateTimerText() {
-        timerText.text = "00:" + countdown.ToString("d2");
-    }
+  public void ShowWinPanel()
+  {
+    Time.timeScale = 0;
+    winPanel.SetActive(true);
+  }
 
-    private IEnumerator UpdateCountdown() {
-        yield return new WaitForSeconds(1f);
-        countdown -= 1;
-        UpdateTimerText();
-        if(countdown > 0) {
-            StartCoroutine(UpdateCountdown());
-        } else {
-            ShowWinPanel();
-        }
-    }
+  private void UpdateTimerText()
+  {
+    timerText.text = "00:" + countdown.ToString("d2");
+  }
 
-    private IEnumerator LoadMainScene() {
-        yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(1);
+  private IEnumerator UpdateCountdown()
+  {
+    yield return new WaitForSeconds(1f);
+    countdown -= 1;
+    UpdateTimerText();
+    if (countdown > 0)
+    {
+      StartCoroutine(UpdateCountdown());
     }
+    else
+    {
+      ShowWinPanel();
+    }
+  }
 
-    public bool isLevelTutorial() {
-        return isTutorial;
-    }
+  private IEnumerator LoadMainScene()
+  {
+    yield return new WaitForSeconds(3f);
+    SceneManager.LoadScene(1);
+  }
 
-    public void StartGame() {
-        if(UIManager.Instance.hasFlashlight) {
-            wavePanel.SetActive(true);
-            isTutorial = false;
-            StartCoroutine(LoadMainScene());
-        } else {
-            instructionText.text = "Grab your flashlight first!";
-        }
-    }
+  public bool isLevelTutorial()
+  {
+    return isTutorial;
+  }
 
-    public void OnColletFlashLight() {
-        hasFlashlight = true;
-        instructionText.text = "Ok, now you're ready!";
+  public void StartGame()
+  {
+    if (UIManager.Instance.hasFlashlight)
+    {
+      wavePanel.SetActive(true);
+      isTutorial = false;
+      StartCoroutine(LoadMainScene());
     }
+    else
+    {
+      instructionText.text = "Grab your flashlight first!";
+    }
+  }
+
+  public void OnColletFlashLight()
+  {
+    hasFlashlight = true;
+    instructionText.text = "Ok, now you're ready!";
+  }
 }

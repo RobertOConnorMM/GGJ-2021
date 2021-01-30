@@ -866,12 +866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWave: 1
-  winPanel: {fileID: 2838602338091053090}
-  wavePanel: {fileID: 216412199}
-  fadePanel: {fileID: 742729073}
-  timerText: {fileID: 7012871388756431881}
-  instructionText: {fileID: 1199114386302862523}
-  waveText: {fileID: 0}
+  countdown: 60
   isTutorial: 1
   hasFlashlight: 0
 --- !u!1 &2208830773038662200
@@ -1253,7 +1248,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1.2999878}
+  m_AnchoredPosition: {x: 0, y: 1.3000488}
   m_SizeDelta: {x: 363.6, y: 101.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5640280911944496524

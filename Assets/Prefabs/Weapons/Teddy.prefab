@@ -79,7 +79,7 @@ MonoBehaviour:
   id: 2
   name: Teddy
   power: 3
-  durability: 3
+  durability: 1
 --- !u!1001 &392041110804134689
 PrefabInstance:
   m_ObjectHideFlags: 0
