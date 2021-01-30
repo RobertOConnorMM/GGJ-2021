@@ -30,22 +30,21 @@ public class WaveManager : MonoBehaviour
             UIManager.Instance.ShowWinPanel();
         } else if(enemiesKilled >= waveTwoEnemyCount + waveOneEnemyCount) {
             if(currentWave != 3) {
-                UpdateWave(3);
+                UIManager.Instance.StartWaveCooldown();
             }
             currentWave = 3;
         } else if(enemiesKilled >= waveOneEnemyCount) {
             if(currentWave != 2) {
-                UpdateWave(2);
+                UIManager.Instance.StartWaveCooldown();
             }
             currentWave = 2;
         }
     }
 
-    private void UpdateWave(int waveNum) {
-        currentWave = waveNum;
-        UIManager.Instance.UpdateWaveText(waveNum);
+    public void UpdateWave() {
+        UIManager.Instance.UpdateWaveText(currentWave);
         for(int i = 0; i < spawns.Length; i++) {
-            spawns[i].StartNextWave(waveNum);
+            spawns[i].StartNextWave(currentWave);
         }
     }
 }
