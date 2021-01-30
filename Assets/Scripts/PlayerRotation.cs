@@ -5,27 +5,71 @@ using UnityEngine.InputSystem;
 
 public class PlayerRotation : MonoBehaviour
 {
-  private PlayerManager player;
+  public PlayerManager player;
+  public float rotationSpeed = 2.75f;
+  public float time = 1.175f;
 
-  public float rotationSpeed = 5f;
+  private Quaternion deltaRotation;
+  private Quaternion targetRotation;
+  private float velocity;
 
   void Start()
   {
-    player = GetComponent<PlayerManager>();
-    //player.GetActions().Player.MousePosition.performed += OnMousePosition;
-    //player.GetActions().Player.Look.performed += OnLook;
+    player.GetActions().Player.MousePosition.performed += OnMousePositionPerformed;
+    player.GetActions().Player.Look.performed += OnLookPerformed;
+    player.GetActions().Player.Look.canceled += OnLookCanceled;
   }
 
-
-  // Update is called once per frame
-  private void OnLook(InputAction.CallbackContext context)
+  void Update()
   {
-    Debug.Log(context);
+    var useDeltaRotation = !deltaRotation.Equals(Quaternion.identity);
+
+    if (useDeltaRotation)
+    {
+      transform.rotation = Quaternion.Slerp(
+        transform.rotation,
+        transform.rotation * deltaRotation,
+        rotationSpeed * Time.deltaTime
+      );
+
+      return;
+    }
+
+    var delta = Quaternion.Angle(transform.rotation, targetRotation) * Time.deltaTime;
+
+    if (delta == 0f)
+    {
+      return;
+    }
+
+    // Use angle to smooth damp the rotation
+    var _time = Mathf.SmoothDampAngle(delta, 0, ref velocity, time);
+    _time = 1 - (_time / delta);
+
+    transform.rotation = Quaternion.Slerp(
+      transform.rotation,
+      targetRotation,
+      _time
+    );
   }
 
-  private void OnMousePosition(InputAction.CallbackContext context)
+  private void OnLookPerformed(InputAction.CallbackContext context)
   {
-    Debug.Log(context);
+    var input = context.ReadValue<Vector2>();
+
+    deltaRotation = Quaternion.Euler(Vector3.zero);
+    deltaRotation.y = input.x;
+  }
+
+  private void OnLookCanceled(InputAction.CallbackContext context)
+  {
+    targetRotation = transform.rotation;
+    deltaRotation = Quaternion.identity;
+  }
+
+  private void OnMousePositionPerformed(InputAction.CallbackContext context)
+  {
+    deltaRotation = Quaternion.identity;
 
     var plane = new Plane(Vector3.up, transform.position);
     var ray = Camera.main.ScreenPointToRay(context.ReadValue<Vector2>());
@@ -33,12 +77,14 @@ public class PlayerRotation : MonoBehaviour
     if (plane.Raycast(ray, out var hitDistance))
     {
       var targetPoint = ray.GetPoint(hitDistance);
-      var targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
+
+      targetRotation = Quaternion.LookRotation(
+        targetPoint - transform.position
+      );
 
       targetRotation.x = 0;
       targetRotation.z = 0;
-
-      transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
   }
+
 }

@@ -7,13 +7,13 @@ public class PlayerMovement : MonoBehaviour
 
   public float movementSpeed = 750f;
   public float damping = 1f;
+  public bool moveUsingPlayerRotation = false;
 
   private Vector3 targetPosition = Vector3.zero;
   private Vector3 velocity = Vector3.zero;
 
   void Start()
   {
-    player = GetComponent<PlayerManager>();
     player.GetActions().Player.Move.performed += OnMoveStarted;
     player.GetActions().Player.Move.canceled += OnMoveCanceled;
   }
@@ -21,9 +21,16 @@ public class PlayerMovement : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    var translate = targetPosition * movementSpeed * Time.deltaTime;
+
+    if (moveUsingPlayerRotation)
+    {
+      translate = player.GetCharacter().transform.rotation * translate;
+    }
+
     transform.position = Vector3.SmoothDamp(
       transform.position,
-      transform.position + (targetPosition * movementSpeed * Time.deltaTime),
+      transform.position + translate,
       ref velocity,
       damping
     );

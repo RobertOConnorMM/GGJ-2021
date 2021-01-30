@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6160515734709407542}
   - component: {fileID: 2943935162696185501}
   - component: {fileID: 1550373029726595934}
-  - component: {fileID: 3582106549472573781}
   - component: {fileID: 535614058}
   - component: {fileID: 535614057}
+  - component: {fileID: 1820585060736798928}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c882c1105a3da547bd814d467c8b401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: {fileID: 8413101925268262526}
 --- !u!114 &2943935162696185501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +167,10 @@ MonoBehaviour:
         m_CallState: 1
     m_ActionId: 24db5986-0f5c-4849-ab9c-37a3a56bd152
     m_ActionName: Player/MousePosition[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b8b10aa6-10a6-4198-ba2c-af2f6c20b4d1
+    m_ActionName: Player/Action[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -184,21 +189,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6160515734709407542}
-  movementSpeed: 200
-  damping: 1
---- !u!114 &3582106549472573781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1550373029726595929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f93c138b8131945c5a2c635005980dbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponScriptableObject: {fileID: 11400000, guid: a896ef7cd67b14d0e8d58b165a1065ad, type: 2}
+  movementSpeed: 1250
+  damping: 1.5
+  moveUsingPlayerRotation: 0
 --- !u!54 &535614058
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -228,6 +221,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.1661896, z: 0.43873698}
   m_Center: {x: 0, y: 0.7539316, z: -0.013180524}
+--- !u!114 &1820585060736798928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550373029726595929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f93c138b8131945c5a2c635005980dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponScriptableObject: {fileID: 11400000, guid: a896ef7cd67b14d0e8d58b165a1065ad, type: 2}
+--- !u!114 &7926404165541690322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413101925268262526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c5146cf2e2b0144ab37f4e520de7c8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6160515734709407542}
+  rotationSpeed: 3
+  time: 0.175
 --- !u!1001 &8646979941864846127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -281,10 +302,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5ad4f7f01de29ab4bb1af505c4292236, type: 3}
       propertyPath: m_Name
-      value: protagonist-character-not-animated (2)
+      value: PlayerCharacter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ad4f7f01de29ab4bb1af505c4292236, type: 3}
+--- !u!1 &8413101925268262526 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ad4f7f01de29ab4bb1af505c4292236, type: 3}
+  m_PrefabInstance: {fileID: 8646979941864846127}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9190306479380714692 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5ad4f7f01de29ab4bb1af505c4292236, type: 3}

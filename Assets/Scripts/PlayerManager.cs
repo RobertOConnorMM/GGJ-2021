@@ -6,22 +6,31 @@ public class PlayerManager : MonoBehaviour
 {
   public PlayerInputActions playerActions;
 
-  void Awake() {
+  public GameObject character;
+
+  void Awake()
+  {
     playerActions = new PlayerInputActions();
   }
 
-  public PlayerInputActions GetActions() {
+  public PlayerInputActions GetActions()
+  {
     return playerActions;
+  }
+
+  public GameObject GetCharacter()
+  {
+    return character;
   }
 
   private void OnEnable()
   {
-    playerActions.Enable();
+    playerActions?.Enable();
   }
 
   private void OnDisable()
   {
-    playerActions.Disable();
+    playerActions?.Disable();
   }
 
 }
