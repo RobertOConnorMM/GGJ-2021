@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LostAndFoundBox : MonoBehaviour
 {
 
   [SerializeField]
   GameObject interactionUI;
+  [SerializeField]
+  private TextMeshProUGUI uiText;
 
   private List<int> weaponItemIds;
   [SerializeField]
@@ -14,15 +17,20 @@ public class LostAndFoundBox : MonoBehaviour
 
   void Start()
   {
-    interactionUI.SetActive(false);
     weaponItemIds = new List<int>();
     AddRandomItemToBox();
-    AddRandomItemToBox();
-    AddRandomItemToBox();
-    AddRandomItemToBox();
-    AddRandomItemToBox();
+    interactionUI.SetActive(false);
 
-    StartCoroutine(RegenerateItemInBox());
+    if(UIManager.Instance.isLevelTutorial()) {
+      uiText.text = "Start Game (E)";
+    } else {
+      AddRandomItemToBox();
+      AddRandomItemToBox();
+      AddRandomItemToBox();
+      AddRandomItemToBox();
+
+      StartCoroutine(RegenerateItemInBox());
+    }
   }
 
   private void AddRandomItemToBox()

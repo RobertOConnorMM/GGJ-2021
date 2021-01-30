@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionUI: {fileID: 7311237323804249672}
+  uiText: {fileID: 7311237324508948414}
   secondsForRegeneratingItem: 10
 --- !u!65 &37261528460994405
 BoxCollider:
