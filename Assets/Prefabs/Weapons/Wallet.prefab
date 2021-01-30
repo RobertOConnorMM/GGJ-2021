@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9138222877428842915}
   - component: {fileID: 5980526843971098123}
   - component: {fileID: 9113035473536804041}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wallet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &9113035473536804041
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69,6 +69,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9138222877428842915}
     m_Modifications:
+    - target: {fileID: -8700617353114198275, guid: 25860180d0f5448f69b9e34f3369c4ad, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 25860180d0f5448f69b9e34f3369c4ad, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -133,9 +137,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 65702495048144492, guid: 25860180d0f5448f69b9e34f3369c4ad, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 25860180d0f5448f69b9e34f3369c4ad, type: 3}
       propertyPath: m_Name
       value: item-wallet
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 25860180d0f5448f69b9e34f3369c4ad, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812164288525800918, guid: 25860180d0f5448f69b9e34f3369c4ad, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25860180d0f5448f69b9e34f3369c4ad, type: 3}

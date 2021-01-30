@@ -23,6 +23,34 @@ public class PlayerCombat : MonoBehaviour
     player.GetActions().Player.Fire.canceled += OnFireCanceled;
   }
 
+  public void GrabItem(GameObject gameObject)
+  {
+    var rigidBody = gameObject.GetComponent<Rigidbody>();
+    rigidBody.isKinematic = true;
+
+    grabbedItem = gameObject;
+    grabbedItem.transform.parent = player.rightHand;
+    grabbedItem.transform.localPosition = Vector3.zero;
+  }
+
+  private void ReleaseItem()
+  {
+    if (grabbedItem == null)
+    {
+      return;
+    }
+
+    var rigidBody = grabbedItem.GetComponent<Rigidbody>();
+    if (rigidBody != null)
+    {
+      rigidBody.isKinematic = false;
+    }
+
+    // Detach grabbed item, enable rigidbody and add force to "shoot" it
+    grabbedItem.transform.parent = null;
+    grabbedItem = null;
+  }
+
   private void OnAction(InputAction.CallbackContext context)
   {
     if (!nearBox && grabbedItem != null && !box.hasItems())
@@ -58,11 +86,8 @@ public class PlayerCombat : MonoBehaviour
       gameObjectPrefab = weaponScriptableObject.ipad;
     }
 
-    grabbedItem = Instantiate(gameObjectPrefab);
-    grabbedItem.transform.parent = player.rightHand;
-
-    var rigidBody = grabbedItem.GetComponent<Rigidbody>();
-    rigidBody.isKinematic = true;
+    ReleaseItem();
+    GrabItem(Instantiate(gameObjectPrefab));
 
     box.HideUI();
   }
@@ -103,8 +128,6 @@ public class PlayerCombat : MonoBehaviour
 
     var speed = ((maxSpeed - minSpeed) * chargeAmount) + minSpeed;
 
-    // Detach grabbed item, enable rigidbody and add force to "shoot" it
-    grabbedItem.transform.parent = null;
 
     var rigidBody = grabbedItem.GetComponent<Rigidbody>();
     rigidBody.isKinematic = false;
@@ -121,6 +144,7 @@ public class PlayerCombat : MonoBehaviour
       ForceMode.Impulse
     );
 
-    grabbedItem = null;
+
+    ReleaseItem();
   }
 }
