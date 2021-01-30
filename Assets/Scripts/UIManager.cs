@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     private GameObject winPanel;
     [SerializeField]
     private TextMeshProUGUI timerText;
-    private int countdown = 10;
+    private int countdown = 30;
     public static UIManager Instance { get; private set; }
 
     public void Awake () {
