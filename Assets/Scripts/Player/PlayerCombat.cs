@@ -64,11 +64,11 @@ public class PlayerCombat : MonoBehaviour
     {
       if (!UIManager.Instance.hasFlashlight)
       {
-        GetComponent<PlayerSpeech>().PlayBoxNoFlashlightSound();
+        GetComponentInParent<PlayerSpeech>().PlayBoxNoFlashlightSound();
       }
       else
       {
-        GetComponent<PlayerSpeech>().PlayStartLevelSound();
+        GetComponentInParent<PlayerSpeech>().PlayStartLevelSound();
       }
       UIManager.Instance.StartGame();
       return;

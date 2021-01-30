@@ -184,8 +184,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c882c1105a3da547bd814d467c8b401, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   character: {fileID: 8413101925268262526}
   leftHand: {fileID: 8015459009437864096}
   rightHand: {fileID: 9167724280363262823}
@@ -200,8 +200,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: ab26d31372d417f49b3aaff551e1f6d0, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
@@ -219,7 +219,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11500000, guid: 60abe49a1f348b4488fcadc226819943, type: 3}
         m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName:
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -235,7 +235,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11500000, guid: 6c5146cf2e2b0144ab37f4e520de7c8a, type: 3}
         m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName:
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -295,7 +295,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11500000, guid: 6c5146cf2e2b0144ab37f4e520de7c8a, type: 3}
         m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName:
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -312,7 +312,7 @@ MonoBehaviour:
     m_ActionId: b8b10aa6-10a6-4198-ba2c-af2f6c20b4d1
     m_ActionName: Player/Action[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme:
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -326,8 +326,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60abe49a1f348b4488fcadc226819943, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   playerManager: {fileID: 6160515734709407542}
   rigidbody: {fileID: 1656176294743734571}
   movementSpeed: 1
@@ -376,21 +376,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.69, y: 1.41, z: 0.43873698}
   m_Center: {x: 0, y: 0.74, z: -0.013180524}
---- !u!114 &7926404165541690322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8413101925268262526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c5146cf2e2b0144ab37f4e520de7c8a, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  player: {fileID: 6160515734709407542}
-  rotationSpeed: 3
-  time: 0.175
 --- !u!114 &1787759398120762686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,13 +386,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f93c138b8131945c5a2c635005980dbe, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   playerManager: {fileID: 6160515734709407542}
   minSpeed: 4
   maxSpeed: 15
   maxChargeTime: 0.6
   weaponScriptableObject: {fileID: 11400000, guid: a896ef7cd67b14d0e8d58b165a1065ad, type: 2}
+--- !u!114 &7926404165541690322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413101925268262526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c5146cf2e2b0144ab37f4e520de7c8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6160515734709407542}
+  rotationSpeed: 3
+  time: 0.175
 --- !u!1 &8431285101829049664
 GameObject:
   m_ObjectHideFlags: 0
