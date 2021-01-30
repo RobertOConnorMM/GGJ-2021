@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
   public int countdown = 30;
   public TextMeshProUGUI timerText;
   public TextMeshProUGUI instructionText;
+  public TextMeshProUGUI waveText;
 
   [SerializeField]
   private GameObject winPanel, wavePanel, fadePanel;
@@ -43,6 +44,10 @@ public class UIManager : MonoBehaviour
   {
     Time.timeScale = 0;
     winPanel.SetActive(true);
+  }
+
+  public void UpdateWaveText(int waveNum) {
+      waveText.text = "Wave " + waveNum;
   }
 
   private void UpdateTimerText()

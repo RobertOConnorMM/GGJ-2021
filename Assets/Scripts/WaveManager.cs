@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     public static WaveManager Instance { get; private set; }
+    public EnemySpawn[] spawns;
     public int currentWave = 1;
     private int waveOneEnemyCount = 2;
     private int waveTwoEnemyCount = 4;
@@ -25,12 +26,26 @@ public class WaveManager : MonoBehaviour
 
     public void AddEnemyKillCount() {
         enemiesKilled++;
-        if(enemiesKilled >= waveOneEnemyCount) {
-            currentWave = 2;
-        } else if(enemiesKilled >= waveTwoEnemyCount + waveOneEnemyCount) {
-            currentWave = 3;
-        } else if(enemiesKilled >= waveThreeEnemyCount + waveTwoEnemyCount + waveOneEnemyCount) {
+        if(enemiesKilled >= waveThreeEnemyCount + waveTwoEnemyCount + waveOneEnemyCount) {
             UIManager.Instance.ShowWinPanel();
+        } else if(enemiesKilled >= waveTwoEnemyCount + waveOneEnemyCount) {
+            if(currentWave != 3) {
+                UpdateWave(3);
+            }
+            currentWave = 3;
+        } else if(enemiesKilled >= waveOneEnemyCount) {
+            if(currentWave != 2) {
+                UpdateWave(2);
+            }
+            currentWave = 2;
+        }
+    }
+
+    private void UpdateWave(int waveNum) {
+        currentWave = waveNum;
+        UIManager.Instance.UpdateWaveText(waveNum);
+        for(int i = 0; i < spawns.Length; i++) {
+            spawns[i].StartNextWave(waveNum);
         }
     }
 }
