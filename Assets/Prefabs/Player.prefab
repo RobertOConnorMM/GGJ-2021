@@ -184,11 +184,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c882c1105a3da547bd814d467c8b401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   character: {fileID: 8413101925268262526}
   leftHand: {fileID: 8015459009437864096}
   rightHand: {fileID: 9167724280363262823}
+  flashlight: {fileID: 4092518725626636573}
 --- !u!114 &2943935162696185501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,8 +200,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Actions: {fileID: -944628639613478452, guid: ab26d31372d417f49b3aaff551e1f6d0, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
@@ -218,7 +219,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11500000, guid: 60abe49a1f348b4488fcadc226819943, type: 3}
         m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: 
+        m_MethodName:
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -234,7 +235,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11500000, guid: 6c5146cf2e2b0144ab37f4e520de7c8a, type: 3}
         m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: 
+        m_MethodName:
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -294,7 +295,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11500000, guid: 6c5146cf2e2b0144ab37f4e520de7c8a, type: 3}
         m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: 
+        m_MethodName:
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -311,7 +312,7 @@ MonoBehaviour:
     m_ActionId: b8b10aa6-10a6-4198-ba2c-af2f6c20b4d1
     m_ActionName: Player/Action[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -325,8 +326,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60abe49a1f348b4488fcadc226819943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   playerManager: {fileID: 6160515734709407542}
   rigidbody: {fileID: 1656176294743734571}
   movementSpeed: 1
@@ -385,8 +386,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c5146cf2e2b0144ab37f4e520de7c8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   player: {fileID: 6160515734709407542}
   rotationSpeed: 3
   time: 0.175
@@ -400,8 +401,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f93c138b8131945c5a2c635005980dbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   playerManager: {fileID: 6160515734709407542}
   minSpeed: 4
   maxSpeed: 15
@@ -512,6 +513,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29827a4dd1c457c429b237001c9f6f7b, type: 3}
+--- !u!1 &4092518725626636573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 29827a4dd1c457c429b237001c9f6f7b, type: 3}
+  m_PrefabInstance: {fileID: 3750062290814178380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3711068027948397479 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 29827a4dd1c457c429b237001c9f6f7b, type: 3}
