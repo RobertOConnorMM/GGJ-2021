@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64fbc3c6f83b64dfea26530847e5269b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 3
   name: Umbrella
   power: 3
   durability: 3

@@ -84,9 +84,14 @@ public class LostAndFoundBox : MonoBehaviour
   {
     if (collision.gameObject.tag == "Player")
     {
-      PlayerCombat player = collision.gameObject.GetComponent<PlayerCombat>();
+      var player = collision.gameObject.GetComponent<PlayerCombat>();
+
+      if (player)
+      {
+        player.OnNearBox(this);
+      }
+
       ShowUI();
-      player.OnNearBox(this);
     }
   }
 
@@ -94,9 +99,14 @@ public class LostAndFoundBox : MonoBehaviour
   {
     if (collision.gameObject.tag == "Player")
     {
-      PlayerCombat player = collision.gameObject.GetComponent<PlayerCombat>();
+      var player = collision.gameObject.GetComponent<PlayerCombat>();
+
+      if (player)
+      {
+        player.OnLeaveBox();
+      }
+
       HideUI();
-      player.OnLeaveBox();
     }
   }
 }

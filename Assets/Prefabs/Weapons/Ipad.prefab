@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2716111954884513814}
   - component: {fileID: 672954093743831847}
   - component: {fileID: 6531560259763220174}
+  - component: {fileID: 9113004102962145859}
   m_Layer: 3
   m_Name: Ipad
   m_TagString: Untagged
@@ -62,6 +63,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.013742077, z: 0.42}
   m_Center: {x: 0, y: 0.01812896, z: 0}
+--- !u!114 &9113004102962145859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710485911318978820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fbc3c6f83b64dfea26530847e5269b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 1
+  name: Ipad
+  power: 3
+  durability: 3
 --- !u!1001 &4036053547838156091
 PrefabInstance:
   m_ObjectHideFlags: 0
