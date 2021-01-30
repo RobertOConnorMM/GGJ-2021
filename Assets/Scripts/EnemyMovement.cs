@@ -5,29 +5,30 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 
-  [SerializeField]
-  private int health = 3;
-  private int currentHealth = 3;
-  private bool isDead = false;
-
-  private Transform target;
-  private Vector3 targetPosition = Vector3.zero;
-  private Vector3 velocity = Vector3.zero;
   public float movementSpeed = 200f;
   public float damping = 1f;
+  public float health = 3f;
 
+  private float currentHealth;
+
+  private Transform target;
   private Rigidbody body;
-
   private AudioSource audioSource;
   [SerializeField]
   private AudioClip hurtSound;
+
+  private bool isDead
+  {
+    get => health < 1;
+  }
 
   void Start()
   {
     body = GetComponent<Rigidbody>();
     audioSource = GetComponent<AudioSource>();
-    PlayerManager pm = (PlayerManager)FindObjectOfType(typeof(PlayerManager));
-    target = pm.getTransform();
+    PlayerManager playerManager = (PlayerManager)FindObjectOfType(typeof(PlayerManager));
+    target = playerManager.getTransform();
+
     currentHealth = health;
   }
 
@@ -38,8 +39,10 @@ public class EnemyMovement : MonoBehaviour
     body.transform.LookAt(target);
   }
 
-  public void OnHit(int damage)
+  public void OnHit(float damage)
   {
+    Debug.Log(damage);
+
     if (isDead)
     {
       return;
@@ -50,9 +53,6 @@ public class EnemyMovement : MonoBehaviour
 
     if (currentHealth <= 0)
     {
-      currentHealth = 0;
-      isDead = true;
-
       Destroy(gameObject);
     }
   }
@@ -61,7 +61,20 @@ public class EnemyMovement : MonoBehaviour
   {
     if (collision.gameObject.tag == "Item")
     {
-      OnHit(1);
+      var weaponItem = collision.gameObject.GetComponent<WeaponItem>();
+      var rigidbody = collision.gameObject.GetComponent<Rigidbody>();
+
+      Debug.Log(rigidbody.velocity.x);
+      Debug.Log(rigidbody.velocity.y);
+      Debug.Log(rigidbody.velocity.magnitude);
+
+      if (Mathf.Abs(rigidbody.velocity.magnitude) < 4f)
+      {
+        return;
+      }
+
+      weaponItem.OnHit(1f);
+      OnHit(1f);
     }
   }
 }

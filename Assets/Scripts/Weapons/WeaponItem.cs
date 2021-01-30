@@ -10,9 +10,9 @@ public class WeaponItem : MonoBehaviour
   [SerializeField]
   private new string name = "Umbrella";
   [SerializeField]
-  private int power = 3;
+  private float power = 1;
   [SerializeField]
-  private int durability = 3;
+  private float durability = 1;
   private PlayerManager playerManager;
   private bool isUiVisible;
 
@@ -20,6 +20,16 @@ public class WeaponItem : MonoBehaviour
   {
     playerManager = FindObjectOfType<PlayerManager>();
     playerManager.GetActions().Player.Action.performed += OnAction;
+  }
+
+  public void OnHit(float damage)
+  {
+    durability -= damage;
+
+    if (durability < 1)
+    {
+      Destroy(gameObject);
+    }
   }
 
   // Update is called once per frame
