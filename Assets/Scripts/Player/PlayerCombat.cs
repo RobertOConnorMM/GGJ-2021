@@ -15,8 +15,11 @@ public class PlayerCombat : MonoBehaviour
   [SerializeField] WeaponScriptableObject weaponScriptableObject;
   private GameObject grabbedItem;
 
+  private PlayerSpeech playerSpeech;
+
   void Start()
   {
+    playerSpeech = GetComponentInParent<PlayerSpeech>();
     playerManager.GetActions().Player.Action.performed += OnAction;
     playerManager.GetActions().Player.Fire.started += OnFireStart;
     playerManager.GetActions().Player.Fire.canceled += OnFireCanceled;
@@ -32,6 +35,7 @@ public class PlayerCombat : MonoBehaviour
     grabbedItem = gameObject;
     grabbedItem.transform.parent = playerManager.rightHand;
     grabbedItem.transform.localPosition = Vector3.zero;
+    playerSpeech.PlayPickupSound();
   }
 
   private void ReleaseItem()
@@ -64,11 +68,11 @@ public class PlayerCombat : MonoBehaviour
     {
       if (!UIManager.Instance.hasFlashlight)
       {
-        GetComponentInParent<PlayerSpeech>().PlayBoxNoFlashlightSound();
+        playerSpeech.PlayBoxNoFlashlightSound();
       }
       else
       {
-        GetComponentInParent<PlayerSpeech>().PlayStartLevelSound();
+        playerSpeech.PlayStartLevelSound();
       }
       UIManager.Instance.StartGame();
       return;
@@ -166,5 +170,6 @@ public class PlayerCombat : MonoBehaviour
 
 
     ReleaseItem();
+    playerSpeech.PlayThrowSound();
   }
 }

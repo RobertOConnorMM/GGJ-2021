@@ -6,7 +6,7 @@ public class PlayerSpeech : MonoBehaviour
 {
     private AudioSource audioData;
     [SerializeField]
-    private AudioClip spawnSound, flashLightCollect, boxNoFlashlight, startFirstLevel;
+    private PlayerAudioScriptableObject playerAudioData;
 
     void Start()
     {
@@ -17,18 +17,26 @@ public class PlayerSpeech : MonoBehaviour
     }
 
     public void PlaySpawnSound() {
-        audioData.PlayOneShot(spawnSound, 1f);
+        audioData.PlayOneShot(playerAudioData.spawnSound, 1f);
     }
 
     public void PlayFlashlightCollectSound() {
-        audioData.PlayOneShot(flashLightCollect, 1f);
+        audioData.PlayOneShot(playerAudioData.flashLightCollect, 1f);
     }
 
     public void PlayBoxNoFlashlightSound() {
-        audioData.PlayOneShot(boxNoFlashlight, 1f);
+        audioData.PlayOneShot(playerAudioData.boxNoFlashlight, 1f);
     }
 
     public void PlayStartLevelSound() {
-        audioData.PlayOneShot(startFirstLevel, 1f);
+        audioData.PlayOneShot(playerAudioData.startFirstLevel, 1f);
+    }
+
+    public void PlayThrowSound() {
+        audioData.PlayOneShot(playerAudioData.throwSound, 0.6f);
+    }
+
+    public void PlayPickupSound() {
+        audioData.PlayOneShot(playerAudioData.pickupSound, 0.6f);
     }
 }

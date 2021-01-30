@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f997bf0a7cb740a5abd498bd1424f98, type: 3}
+  m_Name: PlayerAudioData
+  m_EditorClassIdentifier: 
+  spawnSound: {fileID: 8300000, guid: 61af8d770d8254a76a526c1a31f038a5, type: 3}
+  flashLightCollect: {fileID: 8300000, guid: ce60761dacd4d4f64a4d78dead13696a, type: 3}
+  boxNoFlashlight: {fileID: 8300000, guid: 9205998c4c3a24b2abf48c412b7d9515, type: 3}
+  startFirstLevel: {fileID: 8300000, guid: 9d56c270b77df4ddb923b0823f407894, type: 3}
+  throwSound: {fileID: 8300000, guid: 5c4dd07a78b1a45fe8d39a9be25387cd, type: 3}
+  pickupSound: {fileID: 8300000, guid: e43c714868e58464bbeb46ecde9c564a, type: 3}

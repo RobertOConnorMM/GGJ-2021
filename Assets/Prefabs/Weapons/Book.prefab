@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6350766018814225482}
   m_Layer: 3
   m_Name: Book
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
   id: 0
   name: Book
   power: 3
-  durability: 3
+  durability: 1
 --- !u!1001 &4375674816323327295
 PrefabInstance:
   m_ObjectHideFlags: 0

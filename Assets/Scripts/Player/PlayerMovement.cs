@@ -15,7 +15,9 @@ public class PlayerMovement : MonoBehaviour
   {
     playerManager.GetActions().Player.Move.performed += OnMoveStarted;
     playerManager.GetActions().Player.Move.canceled += OnMoveCanceled;
+    playerManager.GetActions().Player.Pause.performed += OnPausePress;
   }
+
 
   void Update()
   {
@@ -40,5 +42,10 @@ public class PlayerMovement : MonoBehaviour
   private void OnMoveCanceled(InputAction.CallbackContext context)
   {
     targetPosition = Vector2.zero;
+  }
+
+  private void OnPausePress(InputAction.CallbackContext context)
+  {
+    PauseManager.Instance.OnPause();
   }
 }

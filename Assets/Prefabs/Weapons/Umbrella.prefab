@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1759274165265258957}
   m_Layer: 3
   m_Name: Umbrella
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   id: 3
   name: Umbrella
   power: 3
-  durability: 3
+  durability: 1
 --- !u!1001 &768039532262158044
 PrefabInstance:
   m_ObjectHideFlags: 0

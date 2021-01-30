@@ -2,49 +2,79 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour {
+public class EnemyMovement : MonoBehaviour
+{
 
-    [SerializeField]
-    private int health = 3;
-    private int currentHealth = 3;
-    private bool isDead = false;
+  public float movementSpeed = 200f;
+  public float damping = 1f;
+  public float health = 3f;
 
-    private Transform target;
-    private Vector3 targetPosition = Vector3.zero;
-    private Vector3 velocity = Vector3.zero;
-    public float movementSpeed = 200f;
-    public float damping = 1f;
+  private float currentHealth;
 
-    [SerializeField]
-    private Rigidbody body;
+  private Transform target;
+  private Rigidbody body;
+  private AudioSource audioSource;
+  [SerializeField]
+  private AudioClip hurtSound;
 
-    void Start () {
-        body = GetComponent<Rigidbody> ();
-        PlayerManager pm = (PlayerManager) FindObjectOfType (typeof (PlayerManager));
-        target = pm.getTransform ();
-        currentHealth = health;
+  private bool isDead
+  {
+    get => health < 1;
+  }
+
+  void Start()
+  {
+    body = GetComponent<Rigidbody>();
+    audioSource = GetComponent<AudioSource>();
+    PlayerManager playerManager = (PlayerManager)FindObjectOfType(typeof(PlayerManager));
+    target = playerManager.getTransform();
+
+    currentHealth = health;
+  }
+
+  void Update()
+  {
+    float step = movementSpeed * Time.deltaTime;
+    body.transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+    body.transform.LookAt(target);
+  }
+
+  public void OnHit(float damage)
+  {
+    Debug.Log(damage);
+
+    if (isDead)
+    {
+      return;
     }
 
-    void Update () {
-        float step = movementSpeed * Time.deltaTime;
-        body.transform.position = Vector3.MoveTowards (transform.position, target.position, step);
-        body.transform.LookAt (target);
-    }
+    currentHealth -= damage;
+    audioSource.PlayOneShot(hurtSound, 1f);
 
-    public void OnHit (int damage) {
-        if (!isDead) {
-            currentHealth -= damage;
-            if (currentHealth <= 0) {
-                currentHealth = 0;
-                isDead = true;
-                Destroy(gameObject);
-            }
-        }
+    if (currentHealth <= 0)
+    {
+      Destroy(gameObject);
     }
+  }
 
-    void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.tag == "Player") {
-            OnHit(1);
-        }
+  void OnCollisionEnter(Collision collision)
+  {
+    if (collision.gameObject.tag == "Item")
+    {
+      var weaponItem = collision.gameObject.GetComponent<WeaponItem>();
+      var rigidbody = collision.gameObject.GetComponent<Rigidbody>();
+
+      Debug.Log(rigidbody.velocity.x);
+      Debug.Log(rigidbody.velocity.y);
+      Debug.Log(rigidbody.velocity.magnitude);
+
+      if (Mathf.Abs(rigidbody.velocity.magnitude) < 4f)
+      {
+        return;
+      }
+
+      weaponItem.OnHit(1f);
+      OnHit(1f);
     }
+  }
 }

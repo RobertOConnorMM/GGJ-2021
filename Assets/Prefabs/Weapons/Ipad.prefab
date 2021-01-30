@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9113004102962145859}
   m_Layer: 3
   m_Name: Ipad
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
   id: 1
   name: Ipad
   power: 3
-  durability: 3
+  durability: 1
 --- !u!1001 &4036053547838156091
 PrefabInstance:
   m_ObjectHideFlags: 0
