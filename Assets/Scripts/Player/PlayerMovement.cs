@@ -3,23 +3,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-  public PlayerManager player;
-
-  public float movementSpeed = 750f;
-  public float damping = 1f;
-  public bool moveUsingPlayerRotation = false;
+  public PlayerManager playerManager;
+  public new Rigidbody rigidbody;
+  public float movementSpeed = 1f;
+  public bool moveUsingPlayerRotation;
 
   private Vector3 targetPosition = Vector3.zero;
-  private Vector3 velocity = Vector3.zero;
 
-  private Rigidbody rigidbody;
 
   void Start()
   {
-    player.GetActions().Player.Move.performed += OnMoveStarted;
-    player.GetActions().Player.Move.canceled += OnMoveCanceled;
-
-    rigidbody = GetComponent<Rigidbody>();
+    playerManager.GetActions().Player.Move.performed += OnMoveStarted;
+    playerManager.GetActions().Player.Move.canceled += OnMoveCanceled;
   }
 
   void Update()
@@ -28,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     if (moveUsingPlayerRotation)
     {
-      translate = player.GetCharacter().transform.rotation * translate;
+      translate = playerManager.GetCharacter().transform.rotation * translate;
     }
 
     rigidbody.AddForce(translate, ForceMode.VelocityChange);

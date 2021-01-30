@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
+  public PlayerManager playerManager;
   public float minSpeed = 4f;
   public float maxSpeed = 15f;
   public float maxChargeTime = .6f;
@@ -12,20 +13,68 @@ public class PlayerCombat : MonoBehaviour
   private bool nearBox;
   private LostAndFoundBox box;
   [SerializeField] WeaponScriptableObject weaponScriptableObject;
-  private PlayerManager player;
   private GameObject grabbedItem;
 
   void Start()
   {
-    player = GetComponent<PlayerManager>();
-    player.GetActions().Player.Action.performed += OnAction;
-    player.GetActions().Player.Fire.started += OnFireStart;
-    player.GetActions().Player.Fire.canceled += OnFireCanceled;
+    playerManager.GetActions().Player.Action.performed += OnAction;
+    playerManager.GetActions().Player.Fire.started += OnFireStart;
+    playerManager.GetActions().Player.Fire.canceled += OnFireCanceled;
+  }
+
+  public void GrabItem(GameObject gameObject)
+  {
+    ReleaseItem();
+
+    var rigidBody = gameObject.GetComponent<Rigidbody>();
+    rigidBody.isKinematic = true;
+
+    grabbedItem = gameObject;
+    grabbedItem.transform.parent = playerManager.rightHand;
+    grabbedItem.transform.localPosition = Vector3.zero;
+  }
+
+  private void ReleaseItem()
+  {
+    if (grabbedItem == null)
+    {
+      return;
+    }
+
+    var rigidBody = grabbedItem.GetComponent<Rigidbody>();
+    if (rigidBody != null)
+    {
+      rigidBody.isKinematic = false;
+    }
+
+    // Detach grabbed item, enable rigidbody and add force to "shoot" it
+    grabbedItem.transform.parent = null;
+    grabbedItem = null;
   }
 
   private void OnAction(InputAction.CallbackContext context)
   {
-    if (!nearBox && grabbedItem != null && !box.hasItems())
+
+    if (!nearBox)
+    {
+      return;
+    }
+
+    if (UIManager.Instance.isLevelTutorial())
+    {
+      if (!UIManager.Instance.hasFlashlight)
+      {
+        GetComponentInParent<PlayerSpeech>().PlayBoxNoFlashlightSound();
+      }
+      else
+      {
+        GetComponentInParent<PlayerSpeech>().PlayStartLevelSound();
+      }
+      UIManager.Instance.StartGame();
+      return;
+    }
+
+    if (grabbedItem != null && !box.hasItems())
     {
       return;
     }
@@ -58,25 +107,21 @@ public class PlayerCombat : MonoBehaviour
       gameObjectPrefab = weaponScriptableObject.ipad;
     }
 
-    grabbedItem = Instantiate(gameObjectPrefab);
-    grabbedItem.transform.parent = player.rightHand;
-
-    var rigidBody = grabbedItem.GetComponent<Rigidbody>();
-    rigidBody.isKinematic = true;
+    GrabItem(Instantiate(gameObjectPrefab));
 
     box.HideUI();
   }
 
-  public void OnNearBox(LostAndFoundBox box)
+  public void OnNearBox(LostAndFoundBox _box)
   {
     nearBox = true;
-    this.box = box;
+    box = _box;
   }
 
   public void OnLeaveBox()
   {
-    box = null;
     nearBox = false;
+    box = null;
   }
 
   private void OnFireStart(InputAction.CallbackContext context)
@@ -103,24 +148,23 @@ public class PlayerCombat : MonoBehaviour
 
     var speed = ((maxSpeed - minSpeed) * chargeAmount) + minSpeed;
 
-    // Detach grabbed item, enable rigidbody and add force to "shoot" it
-    grabbedItem.transform.parent = null;
 
     var rigidBody = grabbedItem.GetComponent<Rigidbody>();
     rigidBody.isKinematic = false;
     rigidBody.AddTorque(
         Quaternion.Lerp(
             Random.rotation,
-            Quaternion.Euler(player.rightHand.transform.forward),
+            Quaternion.Euler(playerManager.rightHand.transform.forward),
             .9f
         ).eulerAngles * speed,
         ForceMode.Impulse
     );
     rigidBody.AddForce(
-      player.rightHand.transform.forward * speed,
+      playerManager.rightHand.transform.forward * speed,
       ForceMode.Impulse
     );
 
-    grabbedItem = null;
+
+    ReleaseItem();
   }
 }

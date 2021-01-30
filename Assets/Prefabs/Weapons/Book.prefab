@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 6331995651527285078}
   - component: {fileID: 2892835034700863289}
   - component: {fileID: 6562235008195228684}
-  m_Layer: 0
+  - component: {fileID: -6350766018814225482}
+  m_Layer: 3
   m_Name: Book
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +49,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &6562235008195228684
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -62,6 +63,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.50207365, y: 0.06555555, z: 0.36732405}
   m_Center: {x: 0.0011802316, y: 0.0307195, z: 0.005470909}
+--- !u!114 &-6350766018814225482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066679048779508842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fbc3c6f83b64dfea26530847e5269b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  name: Book
+  power: 3
+  durability: 3
 --- !u!1001 &4375674816323327295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69,6 +86,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6331995651527285078}
     m_Modifications:
+    - target: {fileID: -8700617353114198275, guid: 20b6ea73b87154f29a601af64b432b55, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -8700617353114198275, guid: 20b6ea73b87154f29a601af64b432b55, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -117,6 +138,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7029948723529949830, guid: 20b6ea73b87154f29a601af64b432b55, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 65702495048144492, guid: 20b6ea73b87154f29a601af64b432b55, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 65702495048144492, guid: 20b6ea73b87154f29a601af64b432b55, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -124,6 +153,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 20b6ea73b87154f29a601af64b432b55, type: 3}
       propertyPath: m_Name
       value: item-book
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 20b6ea73b87154f29a601af64b432b55, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20b6ea73b87154f29a601af64b432b55, type: 3}

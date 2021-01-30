@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 6515134546512673350}
   - component: {fileID: 7144379182144843076}
   - component: {fileID: 4130244886496606013}
-  m_Layer: 0
+  - component: {fileID: 1759274165265258957}
+  m_Layer: 3
   m_Name: Umbrella
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,14 +42,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3132266282199786170}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 2
+  m_Drag: 0.8
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &4130244886496606013
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -63,6 +64,22 @@ CapsuleCollider:
   m_Height: 3.79
   m_Direction: 1
   m_Center: {x: 0, y: 1.73, z: 0}
+--- !u!114 &1759274165265258957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3132266282199786170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fbc3c6f83b64dfea26530847e5269b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 3
+  name: Umbrella
+  power: 3
+  durability: 3
 --- !u!1001 &768039532262158044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70,6 +87,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6515134546512673350}
     m_Modifications:
+    - target: {fileID: -8700617353114198275, guid: 1db59eda332344fd18c93096efcda2a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1db59eda332344fd18c93096efcda2a3, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -122,9 +143,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -170537094858530935, guid: 1db59eda332344fd18c93096efcda2a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 65702495048144492, guid: 1db59eda332344fd18c93096efcda2a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1db59eda332344fd18c93096efcda2a3, type: 3}
       propertyPath: m_Name
       value: item-umbrella
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1db59eda332344fd18c93096efcda2a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1db59eda332344fd18c93096efcda2a3, type: 3}

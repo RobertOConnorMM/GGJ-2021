@@ -8,6 +8,8 @@ public class EnemySpawn : MonoBehaviour
     private GameObject enemyPrefab;
     [SerializeField]
     private float spawnFrequency = 5f;
+    public int spawnLimit = 1;
+    public int spawnCount = 0;
     void Start()
     {
         StartCoroutine (SpawnEnemyTimer ());
@@ -20,6 +22,9 @@ public class EnemySpawn : MonoBehaviour
     private IEnumerator SpawnEnemyTimer () {
         yield return new WaitForSeconds (spawnFrequency);
         SpawnEnemy();
-        StartCoroutine (SpawnEnemyTimer ());
+        spawnCount++;
+        if(spawnCount < spawnLimit) {
+            StartCoroutine (SpawnEnemyTimer ());
+        }
     }
 }
