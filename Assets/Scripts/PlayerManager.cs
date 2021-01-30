@@ -35,4 +35,8 @@ public class PlayerManager : MonoBehaviour
     playerActions?.Disable();
   }
 
+  public Transform getTransform() {
+    return transform;
+  }
+
 }
