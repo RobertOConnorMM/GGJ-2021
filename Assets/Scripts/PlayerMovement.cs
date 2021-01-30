@@ -12,28 +12,26 @@ public class PlayerMovement : MonoBehaviour
   private Vector3 targetPosition = Vector3.zero;
   private Vector3 velocity = Vector3.zero;
 
+  private Rigidbody rigidbody;
+
   void Start()
   {
     player.GetActions().Player.Move.performed += OnMoveStarted;
     player.GetActions().Player.Move.canceled += OnMoveCanceled;
+
+    rigidbody = GetComponent<Rigidbody>();
   }
 
-  // Update is called once per frame
   void Update()
   {
-    var translate = targetPosition * movementSpeed * Time.deltaTime;
+    var translate = targetPosition * movementSpeed;
 
     if (moveUsingPlayerRotation)
     {
       translate = player.GetCharacter().transform.rotation * translate;
     }
 
-    transform.position = Vector3.SmoothDamp(
-      transform.position,
-      transform.position + translate,
-      ref velocity,
-      damping
-    );
+    rigidbody.AddForce(translate, ForceMode.VelocityChange);
   }
 
   private void OnMoveStarted(InputAction.CallbackContext context)
