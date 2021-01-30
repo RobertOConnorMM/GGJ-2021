@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
   public PlayerManager playerManager;
   public new Rigidbody rigidbody;
-  public float movementSpeed = 1f;
+  public float movementSpeed = 25f;
   public bool moveUsingPlayerRotation;
 
   private Vector3 targetPosition = Vector3.zero;
@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
   void Update()
   {
-    var translate = targetPosition * movementSpeed;
+    var translate = targetPosition * movementSpeed * Time.deltaTime;
 
     if (moveUsingPlayerRotation)
     {
