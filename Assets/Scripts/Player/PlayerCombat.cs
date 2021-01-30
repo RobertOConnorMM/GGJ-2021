@@ -25,6 +25,11 @@ public class PlayerCombat : MonoBehaviour
 
   private void OnAction(InputAction.CallbackContext context)
   {
+
+    if(!nearBox) {
+      return;
+    }
+    
     if(UIManager.Instance.isLevelTutorial()) {
       if(!UIManager.Instance.hasFlashlight) {
         GetComponent<PlayerSpeech>().PlayBoxNoFlashlightSound();
@@ -35,7 +40,7 @@ public class PlayerCombat : MonoBehaviour
       return;
     }
 
-    if (!nearBox && grabbedItem != null && !box.hasItems())
+    if (grabbedItem != null && !box.hasItems())
     {
       return;
     }

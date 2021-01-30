@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject winPanel, wavePanel;
+    private GameObject winPanel, wavePanel, fadePanel;
     [SerializeField]
     private TextMeshProUGUI timerText, instructionText;
     private int countdown = 30;
@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         winPanel.SetActive(false);
+        fadePanel.SetActive(true);
         if(!isTutorial) {
             StartCoroutine(UpdateCountdown());
         }
