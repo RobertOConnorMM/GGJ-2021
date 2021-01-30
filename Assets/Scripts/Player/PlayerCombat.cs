@@ -26,6 +26,11 @@ public class PlayerCombat : MonoBehaviour
   private void OnAction(InputAction.CallbackContext context)
   {
     if(UIManager.Instance.isLevelTutorial()) {
+      if(!UIManager.Instance.hasFlashlight) {
+        GetComponent<PlayerSpeech>().PlayBoxNoFlashlightSound();
+      } else {
+        GetComponent<PlayerSpeech>().PlayStartLevelSound();
+      }
       UIManager.Instance.StartGame();
       return;
     }

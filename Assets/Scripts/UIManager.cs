@@ -64,6 +64,7 @@ public class UIManager : MonoBehaviour
     public void StartGame() {
         if(UIManager.Instance.hasFlashlight) {
             wavePanel.SetActive(true);
+            isTutorial = false;
             StartCoroutine(LoadMainScene());
         } else {
             instructionText.text = "Grab your flashlight first!";
