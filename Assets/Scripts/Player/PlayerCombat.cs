@@ -35,6 +35,7 @@ public class PlayerCombat : MonoBehaviour
     grabbedItem = gameObject;
     grabbedItem.transform.parent = playerManager.rightHand;
     grabbedItem.transform.localPosition = Vector3.zero;
+    playerSpeech.PlayPickupSound();
   }
 
   private void ReleaseItem()

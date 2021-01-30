@@ -35,4 +35,8 @@ public class PlayerSpeech : MonoBehaviour
     public void PlayThrowSound() {
         audioData.PlayOneShot(playerAudioData.throwSound, 0.6f);
     }
+
+    public void PlayPickupSound() {
+        audioData.PlayOneShot(playerAudioData.pickupSound, 0.6f);
+    }
 }

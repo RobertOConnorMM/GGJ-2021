@@ -45,5 +45,6 @@ public class PlayerManager : MonoBehaviour
     flashlight.SetActive(isOn);
     UIManager.Instance.OnColletFlashLight();
     GetComponent<PlayerSpeech>().PlayFlashlightCollectSound();
+    GetComponent<PlayerSpeech>().PlayPickupSound();
   }
 }
