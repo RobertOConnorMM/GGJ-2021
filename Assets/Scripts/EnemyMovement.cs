@@ -16,12 +16,16 @@ public class EnemyMovement : MonoBehaviour
   public float movementSpeed = 200f;
   public float damping = 1f;
 
-  [SerializeField]
   private Rigidbody body;
+
+  private AudioSource audioSource;
+  [SerializeField]
+  private AudioClip hurtSound;
 
   void Start()
   {
     body = GetComponent<Rigidbody>();
+    audioSource = GetComponent<AudioSource>();
     PlayerManager pm = (PlayerManager)FindObjectOfType(typeof(PlayerManager));
     target = pm.getTransform();
     currentHealth = health;
@@ -42,6 +46,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     currentHealth -= damage;
+    audioSource.PlayOneShot(hurtSound, 1f);
 
     if (currentHealth <= 0)
     {
