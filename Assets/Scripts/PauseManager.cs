@@ -35,20 +35,12 @@ public class PauseManager : MonoBehaviour
     public void OnRestartPress() {
         Time.timeScale = 1f;
         isPaused = false;
-        if(UIManager.Instance.isLevelTutorial()) {
-            SceneManager.LoadScene(0);
-        } else {
-            SceneManager.LoadScene(1);
-        }
+        SceneManager.LoadScene(0);
     }
 
     public void OnExitPress() {
         Time.timeScale = 1f;
         isPaused = false;
-        if(UIManager.Instance.isLevelTutorial()) {
-            Application.Quit();
-        } else {
-            SceneManager.LoadScene(0);
-        }
+        Application.Quit();
     }
 }
