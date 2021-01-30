@@ -7,6 +7,8 @@ public class PlayerManager : MonoBehaviour
   public PlayerInputActions playerActions;
 
   public GameObject character;
+  public Transform leftHand;
+  public Transform rightHand;
 
   void Awake()
   {

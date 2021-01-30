@@ -171,10 +171,21 @@
                 {
                     "name": "",
                     "id": "fbbb81c4-81ae-44b4-857b-690808c393f9",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b923462-b483-4c68-b549-45e3b9f81db6",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Action",
                     "isComposite": false,
                     "isPartOfComposite": false
