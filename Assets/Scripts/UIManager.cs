@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class UIManager : MonoBehaviour
 {
-
   public int currentWave = 1;
   public int countdown = 30;
+  public TextMeshProUGUI timerText;
+  public TextMeshProUGUI instructionText;
 
   [SerializeField]
-  private readonly GameObject winPanel, wavePanel, fadePanel;
-
-  [SerializeField]
-  private readonly TextMeshProUGUI timerText, instructionText;
+  private GameObject winPanel, wavePanel, fadePanel;
 
   [SerializeField]
   private bool isTutorial;
@@ -32,8 +31,9 @@ public class UIManager : MonoBehaviour
 
   void Start()
   {
-    winPanel.SetActive(false);
-    fadePanel.SetActive(true);
+    winPanel?.SetActive(false);
+    fadePanel?.SetActive(true);
+
     if (!isTutorial)
     {
       StartCoroutine(UpdateCountdown());
@@ -48,13 +48,15 @@ public class UIManager : MonoBehaviour
 
   private void UpdateTimerText()
   {
-    timerText.text = "00:" + countdown.ToString("d2");
+    var timeSpan = TimeSpan.FromSeconds(countdown);
+    timerText.text = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
   }
 
   private IEnumerator UpdateCountdown()
   {
     yield return new WaitForSeconds(1f);
     countdown -= 1;
+
     UpdateTimerText();
     if (countdown > 0)
     {
@@ -79,7 +81,7 @@ public class UIManager : MonoBehaviour
 
   public void StartGame()
   {
-    if (UIManager.Instance.hasFlashlight)
+    if (Instance.hasFlashlight)
     {
       wavePanel.SetActive(true);
       isTutorial = false;
@@ -91,7 +93,7 @@ public class UIManager : MonoBehaviour
     }
   }
 
-  public void OnColletFlashLight()
+  public void OnCollectFlashLight()
   {
     hasFlashlight = true;
     instructionText.text = "Ok, now you're ready!";

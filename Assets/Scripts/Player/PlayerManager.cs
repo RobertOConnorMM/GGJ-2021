@@ -37,13 +37,15 @@ public class PlayerManager : MonoBehaviour
     playerActions?.Disable();
   }
 
-  public Transform getTransform() {
+  public Transform getTransform()
+  {
     return transform;
   }
 
-  public void SetFlashlightOn(bool isOn) {
+  public void SetFlashlightOn(bool isOn)
+  {
     flashlight.SetActive(isOn);
-    UIManager.Instance.OnColletFlashLight();
+    UIManager.Instance.OnCollectFlashLight();
     GetComponent<PlayerSpeech>().PlayFlashlightCollectSound();
     GetComponent<PlayerSpeech>().PlayPickupSound();
   }

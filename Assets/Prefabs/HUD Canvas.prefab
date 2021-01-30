@@ -733,6 +733,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWave: 1
   countdown: 60
+  timerText: {fileID: 7012871388756431881}
+  instructionText: {fileID: 1199114386302862523}
+  winPanel: {fileID: 2838602338091053090}
+  wavePanel: {fileID: 216412199}
+  fadePanel: {fileID: 742729073}
   isTutorial: 1
   hasFlashlight: 0
 --- !u!1 &2208830773038662200
