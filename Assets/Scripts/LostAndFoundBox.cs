@@ -64,4 +64,20 @@ public class LostAndFoundBox : MonoBehaviour {
     public void HideUI () {
         interactionUI.SetActive (false);
     }
+
+    private void OnTriggerEnter (Collider collision) {
+        if (collision.gameObject.tag == "Player") {
+            PlayerCombat player = collision.gameObject.GetComponent<PlayerCombat> ();
+            ShowUI ();
+            player.OnNearBox(this);
+        }
+    }
+
+    private void OnTriggerExit (Collider collision) {
+        if (collision.gameObject.tag == "Player") {
+            PlayerCombat player = collision.gameObject.GetComponent<PlayerCombat> ();
+            HideUI ();
+            player.OnLeaveBox();
+        }
+    }
 }

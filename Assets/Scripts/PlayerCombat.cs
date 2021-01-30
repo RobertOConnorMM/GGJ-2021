@@ -44,20 +44,14 @@ public class PlayerCombat : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter (Collision collision) {
-        if (collision.gameObject.tag == "LostAndFoundBox") {
-            box = collision.gameObject.GetComponent<LostAndFoundBox> ();
-            box.ShowUI ();
-            nearBox = true;
-        }
+    public void OnNearBox(LostAndFoundBox box) {
+        nearBox = true;
+        this.box = box;
     }
 
-    private void OnCollisionExit (Collision collision) {
-        if (collision.gameObject.tag == "LostAndFoundBox") {
-            box.HideUI ();
-            box = null;
-            nearBox = false;
-            hasTakenItem = false;
-        }
+    public void OnLeaveBox() {
+        box = null;
+        nearBox = false;
+        hasTakenItem = false;
     }
 }
