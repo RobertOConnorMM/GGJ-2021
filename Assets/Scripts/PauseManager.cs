@@ -9,6 +9,7 @@ public class PauseManager : MonoBehaviour
     public static PauseManager Instance { get; private set; }
     [SerializeField]
     private GameObject panel;
+    public bool isPaused = false;
 
     public void Awake () {
         Instance = this;
@@ -16,17 +17,24 @@ public class PauseManager : MonoBehaviour
     }
 
     public void OnPause() {
-        Time.timeScale = 0;
-        panel.SetActive(true);
+        if(!isPaused) {
+            Time.timeScale = 0;
+            panel.SetActive(true);
+            isPaused = true;
+        } else {
+            OnResumePress();
+        }
     }
 
     public void OnResumePress() {
         Time.timeScale = 1f;
         panel.SetActive(false);
+        isPaused = false;
     }
 
     public void OnRestartPress() {
         Time.timeScale = 1f;
+        isPaused = false;
         if(UIManager.Instance.isLevelTutorial()) {
             SceneManager.LoadScene(0);
         } else {
@@ -36,6 +44,7 @@ public class PauseManager : MonoBehaviour
 
     public void OnExitPress() {
         Time.timeScale = 1f;
+        isPaused = false;
         if(UIManager.Instance.isLevelTutorial()) {
             Application.Quit();
         } else {
