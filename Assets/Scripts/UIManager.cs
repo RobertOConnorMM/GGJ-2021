@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -51,6 +52,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private IEnumerator LoadMainScene() {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(1);
+    }
+
     public bool isLevelTutorial() {
         return isTutorial;
     }
@@ -58,6 +64,7 @@ public class UIManager : MonoBehaviour
     public void StartGame() {
         if(UIManager.Instance.hasFlashlight) {
             wavePanel.SetActive(true);
+            StartCoroutine(LoadMainScene());
         } else {
             instructionText.text = "Grab your flashlight first!";
         }
