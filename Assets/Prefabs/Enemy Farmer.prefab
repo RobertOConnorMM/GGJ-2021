@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &808251701844085298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 624388593588782485}
+  m_Layer: 8
+  m_Name: WeaponTransform
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &624388593588782485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808251701844085298}
+  m_LocalRotation: {x: -0.15205744, y: -0.017034322, z: -0.21851277, w: 0.9637638}
+  m_LocalPosition: {x: -0.413, y: 0.51, z: -0.571}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6058306847327780888}
+  m_Father: {fileID: 9033484737761209625}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -17.49, y: 2.02, z: -25.86}
 --- !u!1 &9033484737761209624
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,7 +46,7 @@ GameObject:
   - component: {fileID: 9033484737761209626}
   - component: {fileID: 5685561739436516316}
   - component: {fileID: 4616067678293447485}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Farmer
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -34,6 +65,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 533201962157617520}
+  - {fileID: 624388593588782485}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -75,6 +107,10 @@ MonoBehaviour:
   knockbackForce: 10
   knockbackRadius: 5
   knockbackUpwardsMomentum: 1
+  weapon: {fileID: 678971680073152144}
+  weaponTransform: {fileID: 624388593588782485}
+  throwingSpeed: 12
+  attackRange: 8
   hurtSound: {fileID: 8300000, guid: bb13abef071fc4caea53ee4e6f251e33, type: 3}
 --- !u!54 &9033484737761209626
 Rigidbody:
@@ -198,10 +234,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 50
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -241,9 +277,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 3ab100fe00e4d9c4eb016c951c968a16, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 3ab100fe00e4d9c4eb016c951c968a16, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 3ab100fe00e4d9c4eb016c951c968a16, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3ab100fe00e4d9c4eb016c951c968a16, type: 3}
       propertyPath: m_Name
       value: enemy-farmer-character
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3ab100fe00e4d9c4eb016c951c968a16, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3ab100fe00e4d9c4eb016c951c968a16, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ab100fe00e4d9c4eb016c951c968a16, type: 3}
@@ -251,4 +307,40 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3ab100fe00e4d9c4eb016c951c968a16, type: 3}
   m_PrefabInstance: {fileID: 66684424415041179}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7920711869650311788
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 624388593588782485}
+    m_Modifications:
+    - target: {fileID: 2279740006294498370, guid: 5f8621191819a454093e61b3e556064d, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279740006294498370, guid: 5f8621191819a454093e61b3e556064d, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391055745720828172, guid: 5f8621191819a454093e61b3e556064d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241845785685748988, guid: 5f8621191819a454093e61b3e556064d, type: 3}
+      propertyPath: m_Name
+      value: Pitchfork
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: -1463769893033708224, guid: 5f8621191819a454093e61b3e556064d, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 5f8621191819a454093e61b3e556064d, type: 3}
+--- !u!1 &678971680073152144 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7241845785685748988, guid: 5f8621191819a454093e61b3e556064d, type: 3}
+  m_PrefabInstance: {fileID: 7920711869650311788}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6058306847327780888 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4179173880233990772, guid: 5f8621191819a454093e61b3e556064d, type: 3}
+  m_PrefabInstance: {fileID: 7920711869650311788}
   m_PrefabAsset: {fileID: 0}

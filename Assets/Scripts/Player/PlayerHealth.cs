@@ -51,6 +51,13 @@ public class PlayerHealth : MonoBehaviour
       return;
     }
 
+    var collisionRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+
+    if (Mathf.Abs(collisionRigidbody.velocity.magnitude) < 2f)
+    {
+      return;
+    }
+
     currentHealth = Mathf.Max(0, currentHealth - 1);
 
     var healthRatio = currentHealth == 0 ? 0 : currentHealth / health;
