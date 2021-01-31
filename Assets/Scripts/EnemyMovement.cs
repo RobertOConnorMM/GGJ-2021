@@ -27,7 +27,7 @@ public class EnemyMovement : MonoBehaviour
   private new Rigidbody rigidbody;
   private AudioSource audioSource;
   [SerializeField]
-  private AudioClip hurtSound, spawnSound;
+  private AudioClip hurtSound, spawnSound, throwSound;
 
   public GameObject hitParticlesPrefab;
 
@@ -52,7 +52,7 @@ public class EnemyMovement : MonoBehaviour
 
     currentHealth = health;
 
-    InvokeRepeating("Think", 0, 1.5f);
+    InvokeRepeating("Think", 0, 2f);
   }
 
   void Update()
@@ -60,6 +60,11 @@ public class EnemyMovement : MonoBehaviour
     // Walk to weapon or player
     if (enemyState == EnemyState.FindWeapon)
     {
+      if (weapon.transform.parent == weaponTransform)
+      {
+        return;
+      }
+
       navMeshAgent.SetDestination(weapon.transform.position);
       rigidbody.transform.LookAt(weapon.transform);
 
@@ -72,8 +77,6 @@ public class EnemyMovement : MonoBehaviour
         weapon.transform.parent = weaponTransform;
         weapon.transform.localPosition = Vector3.zero;
         weapon.transform.localRotation = Quaternion.identity;
-
-        enemyState = EnemyState.Seek;
       }
 
       return;
@@ -83,7 +86,7 @@ public class EnemyMovement : MonoBehaviour
     rigidbody.transform.LookAt(target);
 
     // Attack when in range and weapon attached
-    var isWeaponAttached = weapon != null && weapon.transform.parent == weaponTransform;
+    var isWeaponAttached = weapon.transform.parent == weaponTransform;
     var isInAttackRange = (target.position - transform.position).magnitude < attackRange;
 
     if (isWeaponAttached && isInAttackRange)
@@ -94,11 +97,9 @@ public class EnemyMovement : MonoBehaviour
 
   private void Think()
   {
-    var isInAttackRange = (target.position - transform.position).magnitude < attackRange;
-    var isWeaponAttached = weapon != null && weapon.transform.parent == weaponTransform;
-    var isWeaponDestroyed = weapon == null;
+    var isWeaponAttached = weapon.transform.parent == weaponTransform;
 
-    if (isInAttackRange || isWeaponAttached || isWeaponDestroyed)
+    if (isWeaponAttached)
     {
       enemyState = EnemyState.Seek;
     }
@@ -116,6 +117,8 @@ public class EnemyMovement : MonoBehaviour
     {
       return;
     }
+
+    audioSource.PlayOneShot(throwSound);
 
     // Detach weapon
     weapon.transform.parent = null;
@@ -151,6 +154,8 @@ public class EnemyMovement : MonoBehaviour
     if (currentHealth <= 0)
     {
       WaveManager.Instance.AddEnemyKillCount();
+
+      Destroy(weapon);
       Destroy(gameObject);
     }
   }
