@@ -12,6 +12,9 @@ public class WaveManager : MonoBehaviour
     private int waveThreeEnemyCount = 6;
     public int enemiesKilled = 0;
 
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip hurtSound;
     
     public void Awake()
     {
@@ -19,13 +22,15 @@ public class WaveManager : MonoBehaviour
     }
 
     void Start()
-    {
+    {   
+        audioSource = GetComponent<AudioSource>();
         currentWave = 1;
         enemiesKilled = 0;
         UpdateWave();
     }
 
     public void AddEnemyKillCount() {
+        audioSource.PlayOneShot(hurtSound, 1f);
         enemiesKilled++;
         if(enemiesKilled >= waveThreeEnemyCount + waveTwoEnemyCount + waveOneEnemyCount) {
             UIManager.Instance.ShowWinPanel();
