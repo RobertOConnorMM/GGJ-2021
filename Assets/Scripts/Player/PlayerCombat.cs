@@ -168,7 +168,7 @@ public class PlayerCombat : MonoBehaviour
       ForceMode.Impulse
     );
 
-
+    grabbedItem.GetComponent<WeaponItem>().isInHand = false;
     ReleaseItem();
     playerSpeech.PlayThrowSound();
   }

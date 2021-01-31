@@ -79,6 +79,8 @@ MonoBehaviour:
   name: Wallet
   power: 3
   durability: 1
+  highlightMaterial: {fileID: 2100000, guid: d288f0c4087f747c78ce2b589f5f27e2, type: 2}
+  renderer: {fileID: 2302046880605909650}
 --- !u!1001 &2931498588952978918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175,5 +177,10 @@ PrefabInstance:
 --- !u!4 &3396979734912205325 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 25860180d0f5448f69b9e34f3369c4ad, type: 3}
+  m_PrefabInstance: {fileID: 2931498588952978918}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2302046880605909650 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5234232664364001420, guid: 25860180d0f5448f69b9e34f3369c4ad, type: 3}
   m_PrefabInstance: {fileID: 2931498588952978918}
   m_PrefabAsset: {fileID: 0}

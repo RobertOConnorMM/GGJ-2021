@@ -80,6 +80,8 @@ MonoBehaviour:
   name: Teddy
   power: 3
   durability: 1
+  highlightMaterial: {fileID: 2100000, guid: d288f0c4087f747c78ce2b589f5f27e2, type: 2}
+  renderer: {fileID: 3230586798520867226}
 --- !u!1001 &392041110804134689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -176,5 +178,10 @@ PrefabInstance:
 --- !u!4 &214613869315300554 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5399541b75b0b4866a485d9eb056fb28, type: 3}
+  m_PrefabInstance: {fileID: 392041110804134689}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3230586798520867226 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -6222401543611391301, guid: 5399541b75b0b4866a485d9eb056fb28, type: 3}
   m_PrefabInstance: {fileID: 392041110804134689}
   m_PrefabAsset: {fileID: 0}

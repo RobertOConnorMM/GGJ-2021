@@ -15,11 +15,17 @@ public class WeaponItem : MonoBehaviour
   private float durability = 1;
   private PlayerManager playerManager;
   private bool isUiVisible;
+  private Material normalMaterial;
+  public Material highlightMaterial;
+  public Renderer renderer;
+  public bool isInHand = false;
 
   void Start()
   {
     playerManager = FindObjectOfType<PlayerManager>();
     playerManager.GetActions().Player.Action.performed += OnAction;
+    normalMaterial = renderer.material;
+    isInHand = true;
   }
 
   public void OnHit(float damage)
@@ -59,17 +65,22 @@ public class WeaponItem : MonoBehaviour
     {
       var playerCombat = playerManager.GetComponentInChildren<PlayerCombat>();
       playerCombat.GrabItem(gameObject);
+      isInHand = true;
     }
   }
 
   private void ShowUI()
   {
     isUiVisible = true;
+    if(!isInHand) {
+      renderer.material = highlightMaterial;
+    }
   }
 
   private void HideUI()
   {
     isUiVisible = false;
+    renderer.material = normalMaterial;
 
   }
 }

@@ -80,6 +80,8 @@ MonoBehaviour:
   name: Umbrella
   power: 3
   durability: 1
+  highlightMaterial: {fileID: 2100000, guid: d288f0c4087f747c78ce2b589f5f27e2, type: 2}
+  renderer: {fileID: 6654335311496799381}
 --- !u!1001 &768039532262158044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164,5 +166,10 @@ PrefabInstance:
 --- !u!4 &946361339722074423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1db59eda332344fd18c93096efcda2a3, type: 3}
+  m_PrefabInstance: {fileID: 768039532262158044}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6654335311496799381 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -2958744734485738935, guid: 1db59eda332344fd18c93096efcda2a3, type: 3}
   m_PrefabInstance: {fileID: 768039532262158044}
   m_PrefabAsset: {fileID: 0}
