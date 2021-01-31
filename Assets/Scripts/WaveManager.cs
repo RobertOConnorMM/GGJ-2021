@@ -15,6 +15,8 @@ public class WaveManager : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField]
     private AudioClip hurtSound;
+    [SerializeField]
+    private AudioClip waveCompleteSound;
     
     public void Awake()
     {
@@ -36,11 +38,13 @@ public class WaveManager : MonoBehaviour
             UIManager.Instance.ShowWinPanel();
         } else if(enemiesKilled >= waveTwoEnemyCount + waveOneEnemyCount) {
             if(currentWave != 3) {
+                audioSource.PlayOneShot(waveCompleteSound, 1f);
                 UIManager.Instance.StartWaveCooldown();
             }
             currentWave = 3;
         } else if(enemiesKilled >= waveOneEnemyCount) {
             if(currentWave != 2) {
+                audioSource.PlayOneShot(waveCompleteSound, 1f);
                 UIManager.Instance.StartWaveCooldown();
             }
             currentWave = 2;
