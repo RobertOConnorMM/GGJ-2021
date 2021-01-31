@@ -10,10 +10,6 @@ public class EnemySpawn : MonoBehaviour
   private float spawnFrequency = 5f;
   public int spawnLimit = 1;
   public int spawnCount = 0;
-  void Start()
-  {
-    StartCoroutine(SpawnEnemyTimer());
-  }
 
   public void SpawnEnemy()
   {

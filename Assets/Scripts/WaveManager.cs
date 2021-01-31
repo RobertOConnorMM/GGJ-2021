@@ -22,6 +22,7 @@ public class WaveManager : MonoBehaviour
     {
         currentWave = 1;
         enemiesKilled = 0;
+        UpdateWave();
     }
 
     public void AddEnemyKillCount() {
@@ -43,8 +44,8 @@ public class WaveManager : MonoBehaviour
 
     public void UpdateWave() {
         UIManager.Instance.UpdateWaveText(currentWave);
-        for(int i = 0; i < spawns.Length; i++) {
-            spawns[i].StartNextWave(currentWave);
+        for(int i = 0; i < currentWave*2; i++) {
+            spawns[Random.Range(0, spawns.Length)].StartNextWave(currentWave);
         }
     }
 }
