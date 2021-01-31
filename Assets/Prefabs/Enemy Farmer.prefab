@@ -109,7 +109,7 @@ MonoBehaviour:
   knockbackUpwardsMomentum: 1
   weapon: {fileID: 678971680073152144}
   weaponTransform: {fileID: 624388593588782485}
-  throwingSpeed: 12
+  throwingSpeed: 8
   attackRange: 8
   hurtSound: {fileID: 8300000, guid: bb13abef071fc4caea53ee4e6f251e33, type: 3}
   spawnSound: {fileID: 8300000, guid: 9a8fc3ccd3e63421bb5b6f6e93785fd9, type: 3}
