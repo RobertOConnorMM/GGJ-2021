@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
   public float movementSpeed = 25f;
   public bool moveUsingPlayerRotation;
   private bool isWalking = false;
+  private IEnumerator footstepCoroutine;
 
   private Vector3 targetPosition = Vector3.zero;
 
@@ -37,11 +38,15 @@ public class PlayerMovement : MonoBehaviour
 
     if(targetPosition.x != 0 || targetPosition.z != 0) {
       if(!isWalking) {
-        StartCoroutine(PlayFootstepSound());
+        footstepCoroutine = PlayFootstepSound();
+        StartCoroutine(footstepCoroutine);
         isWalking = true;
       }
     } else {
       isWalking = false;
+      if(footstepCoroutine != null) {
+        StopCoroutine(footstepCoroutine);
+      }
     }
   }
 
@@ -50,7 +55,8 @@ public class PlayerMovement : MonoBehaviour
     yield return new WaitForSeconds(0.4f);
     playerSpeech.PlayFootstep();
     if(isWalking) {
-      StartCoroutine(PlayFootstepSound());
+      footstepCoroutine = PlayFootstepSound();
+      StartCoroutine(footstepCoroutine);
     }
   }
 
