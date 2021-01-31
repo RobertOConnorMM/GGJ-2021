@@ -7,14 +7,14 @@ public class EnemyMovement : MonoBehaviour
 {
   public float health = 3f;
   public float movementSpeed = 20f;
-  public float knockbackForce = 10f;
+  public float knockbackForce = 40f;
   public float knockbackRadius = 5f;
-  public float knockbackUpwardsMomentum = 1f;
+  public float knockbackUpwardsMomentum = -.5f;
 
   private float currentHealth;
 
   private Transform target;
-  private Rigidbody rigidBody;
+  private new Rigidbody rigidbody;
   private AudioSource audioSource;
   [SerializeField]
   private AudioClip hurtSound;
@@ -29,7 +29,7 @@ public class EnemyMovement : MonoBehaviour
   void Start()
   {
     navMeshAgent = GetComponent<NavMeshAgent>();
-    rigidBody = GetComponent<Rigidbody>();
+    rigidbody = GetComponent<Rigidbody>();
     audioSource = GetComponent<AudioSource>();
 
     var playerManager = (PlayerManager)FindObjectOfType(typeof(PlayerManager));
@@ -41,7 +41,7 @@ public class EnemyMovement : MonoBehaviour
   void Update()
   {
     navMeshAgent.SetDestination(target.position);
-    rigidBody.transform.LookAt(target);
+    rigidbody.transform.LookAt(target);
   }
 
   public void OnHit(float damage)
@@ -66,15 +66,33 @@ public class EnemyMovement : MonoBehaviour
     if (collision.gameObject.tag == "Item")
     {
       var weaponItem = collision.gameObject.GetComponent<WeaponItem>();
-      var rigidbody = collision.gameObject.GetComponent<Rigidbody>();
+      var itemRigidbody = collision.gameObject.GetComponent<Rigidbody>();
 
-      if (Mathf.Abs(rigidbody.velocity.magnitude) < 4f)
+      if (Mathf.Abs(itemRigidbody.velocity.magnitude) < 4f)
       {
         return;
       }
 
+      Knockback(collision);
+
       weaponItem.OnHit(1f);
       OnHit(1f);
     }
+
+    if (collision.gameObject.tag == "Player")
+    {
+      Knockback(collision);
+    }
+  }
+
+  void Knockback(Collision collision)
+  {
+    rigidbody.AddExplosionForce(
+      knockbackForce,
+      transform.position + (collision.gameObject.transform.position - transform.position),
+      knockbackRadius,
+      knockbackUpwardsMomentum,
+      ForceMode.Impulse
+    );
   }
 }
