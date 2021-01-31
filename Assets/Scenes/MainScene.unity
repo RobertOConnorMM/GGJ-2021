@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.1
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 148369c2a8d6146da8d076a1a270a6b1, type: 2}
 --- !u!4 &1988665783
@@ -1304,9 +1304,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: dfa73501d7d7b4c0599d975329605bef, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.132
+  m_Volume: 0.197
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
