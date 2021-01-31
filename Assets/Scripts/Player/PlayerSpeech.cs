@@ -7,6 +7,7 @@ public class PlayerSpeech : MonoBehaviour
     private AudioSource audioData;
     [SerializeField]
     private PlayerAudioScriptableObject playerAudioData;
+    private int lastPlayedStep = 0;
 
     void Start()
     {
@@ -38,5 +39,15 @@ public class PlayerSpeech : MonoBehaviour
 
     public void PlayPickupSound() {
         audioData.PlayOneShot(playerAudioData.pickupSound, 0.6f);
+    }
+
+    public void PlayFootstep() {
+        if(lastPlayedStep == 0) {
+            audioData.PlayOneShot(playerAudioData.footstep2, 0.3f);
+            lastPlayedStep = 1;
+        } else {
+            audioData.PlayOneShot(playerAudioData.footstep, 0.3f);
+            lastPlayedStep = 0;
+        }
     }
 }
