@@ -6,34 +6,37 @@ public class EnemySpawn : MonoBehaviour
 {
   [SerializeField]
   private GameObject enemyPrefab;
-  [SerializeField]
-  private float spawnFrequency = 5f;
+  private float spawnFrequency = 10f;
   public int spawnLimit = 1;
   public int spawnCount = 0;
-  void Start()
-  {
-    StartCoroutine(SpawnEnemyTimer());
-  }
+  public bool hasStarted = false;
 
   public void SpawnEnemy()
   {
     GameObject itemObject = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
   }
 
-  public void StartNextWave(int waveNum) {
-    spawnLimit = waveNum;
-    spawnCount = 0;
-    StartCoroutine(SpawnEnemyTimer());
+  public void StartNextWave() {
+    if(!hasStarted) {
+      spawnLimit = 1;
+      spawnCount = 0;
+      StartCoroutine(SpawnEnemyTimer(3f));
+      hasStarted = true;
+    } else {
+      spawnLimit++;
+    }
   }
 
-  private IEnumerator SpawnEnemyTimer()
+  private IEnumerator SpawnEnemyTimer(float freq)
   {
-    yield return new WaitForSeconds(spawnFrequency);
+    yield return new WaitForSeconds(freq);
     SpawnEnemy();
     spawnCount++;
     if (spawnCount < spawnLimit)
     {
-      StartCoroutine(SpawnEnemyTimer());
+      StartCoroutine(SpawnEnemyTimer(spawnFrequency));
+    } else {
+      hasStarted = false;
     }
   }
 }

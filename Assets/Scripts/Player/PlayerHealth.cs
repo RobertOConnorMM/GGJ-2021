@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
   public float health = 3f;
   public RectTransform healthBar;
-  public float healthBarTranslateSmoothTime = 1;
+  public float healthBarTranslateSmoothTime = .2f;
   public float knockbackForce = 10f;
   public float knockbackRadius = 5f;
   public float knockbackUpwardsMomentum = 1f;
@@ -15,6 +15,8 @@ public class PlayerHealth : MonoBehaviour
   private float borderSize = 3f;
   private float healthBarTranslate;
   private float healthBarTranslateVelocity;
+  private new Rigidbody rigidbody;
+  private PlayerManager playerManager;
 
   public bool IsDead
   {
@@ -24,6 +26,8 @@ public class PlayerHealth : MonoBehaviour
   void Start()
   {
     currentHealth = health;
+    rigidbody = GetComponent<Rigidbody>();
+    playerManager = GetComponent<PlayerManager>();
   }
 
   void Update()
@@ -52,7 +56,16 @@ public class PlayerHealth : MonoBehaviour
     var healthRatio = currentHealth == 0 ? 0 : currentHealth / health;
     healthBarTranslate = -((healthBar.rect.width - borderSize) * (1 - healthRatio));
 
-    if(currentHealth <= 0) {
+    rigidbody.AddExplosionForce(
+      40f,
+      transform.position + (collision.gameObject.transform.position - transform.position),
+      5f,
+      -.5f,
+      ForceMode.Impulse
+    );
+
+    if (currentHealth <= 0)
+    {
       UIManager.Instance.LoseGame();
     }
   }
