@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Item
   - FxTemporaire
+  - Props
   layers:
   - Default
   - TransparentFX

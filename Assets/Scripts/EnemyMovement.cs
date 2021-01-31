@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class EnemyMovement : MonoBehaviour
   [SerializeField]
   private AudioClip hurtSound;
 
+  private NavMeshAgent navMeshAgent;
+
   private bool isDead
   {
     get => health < 1;
@@ -25,9 +28,11 @@ public class EnemyMovement : MonoBehaviour
 
   void Start()
   {
+    navMeshAgent = GetComponent<NavMeshAgent>();
     rigidBody = GetComponent<Rigidbody>();
     audioSource = GetComponent<AudioSource>();
-    PlayerManager playerManager = (PlayerManager)FindObjectOfType(typeof(PlayerManager));
+
+    var playerManager = (PlayerManager)FindObjectOfType(typeof(PlayerManager));
     target = playerManager.getTransform();
 
     currentHealth = health;
@@ -35,13 +40,7 @@ public class EnemyMovement : MonoBehaviour
 
   void Update()
   {
-    var translate = target.position - (transform.position + Vector3.forward);
-
-    rigidBody.AddForce(
-      translate.normalized * movementSpeed * Time.deltaTime,
-      ForceMode.VelocityChange
-    );
-
+    navMeshAgent.SetDestination(target.position);
     rigidBody.transform.LookAt(target);
   }
 
@@ -57,8 +56,8 @@ public class EnemyMovement : MonoBehaviour
 
     if (currentHealth <= 0)
     {
-        WaveManager.Instance.AddEnemyKillCount();
-        Destroy(gameObject);
+      WaveManager.Instance.AddEnemyKillCount();
+      Destroy(gameObject);
     }
   }
 
