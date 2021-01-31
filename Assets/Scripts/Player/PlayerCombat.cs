@@ -84,11 +84,13 @@ public class PlayerCombat : MonoBehaviour
     }
 
     int newItemId = box.TakeItem();
-
+    
     if(newItemId == -1) {
       box.HideUI();
       return;
     }
+
+    
 
     GameObject gameObjectPrefab;
     if (newItemId == WeaponIDs.UMBRELLA)
@@ -110,6 +112,10 @@ public class PlayerCombat : MonoBehaviour
     else if (newItemId == WeaponIDs.IPAD)
     {
       gameObjectPrefab = weaponScriptableObject.ipad;
+    }
+    else if (newItemId == WeaponIDs.BATON)
+    {
+      gameObjectPrefab = weaponScriptableObject.baton;
     }
     else
     {

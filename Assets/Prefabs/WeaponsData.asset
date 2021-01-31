@@ -17,3 +17,4 @@ MonoBehaviour:
   book: {fileID: 2066679048779508842, guid: ea0f7ffc2d5f64b3ca1e63d03ea129f4, type: 3}
   wallet: {fileID: 4257350729566669465, guid: 179a3fa8f8f614d15ab7403f15e3907e, type: 3}
   ipad: {fileID: 710485911318978820, guid: 10525fb4acc414358b8e5ac0113a82fb, type: 3}
+  baton: {fileID: 8623085405801884184, guid: 37d979020aed34b4f9f8fb90b63776c6, type: 3}

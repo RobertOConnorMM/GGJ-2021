@@ -9,4 +9,5 @@ public static class WeaponIDs
     public static int BOOK = 2;
     public static int WALLET = 3;
     public static int IPAD = 4;
+    public static int BATON = 5;
 }
