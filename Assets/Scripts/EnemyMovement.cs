@@ -27,7 +27,7 @@ public class EnemyMovement : MonoBehaviour
   private new Rigidbody rigidbody;
   private AudioSource audioSource;
   [SerializeField]
-  private AudioClip hurtSound;
+  private AudioClip hurtSound, spawnSound;
 
   public GameObject hitParticlesPrefab;
 
@@ -45,6 +45,7 @@ public class EnemyMovement : MonoBehaviour
     navMeshAgent = GetComponent<NavMeshAgent>();
     rigidbody = GetComponent<Rigidbody>();
     audioSource = GetComponent<AudioSource>();
+    audioSource.PlayOneShot(spawnSound, 0.6f);
 
     var playerManager = (PlayerManager)FindObjectOfType(typeof(PlayerManager));
     target = playerManager.getTransform();
