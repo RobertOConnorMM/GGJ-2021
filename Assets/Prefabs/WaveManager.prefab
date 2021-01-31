@@ -166,6 +166,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4338758277323892807}
     m_Modifications:
+    - target: {fileID: 1213300975003447748, guid: 1bc74da439cec4e708caad3b561e4298, type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1213300975003447749, guid: 1bc74da439cec4e708caad3b561e4298, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -239,6 +243,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4338758277323892807}
     m_Modifications:
+    - target: {fileID: 1213300975003447748, guid: 1bc74da439cec4e708caad3b561e4298, type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1213300975003447749, guid: 1bc74da439cec4e708caad3b561e4298, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -385,6 +393,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4338758277323892807}
     m_Modifications:
+    - target: {fileID: 1213300975003447748, guid: 1bc74da439cec4e708caad3b561e4298, type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1213300975003447749, guid: 1bc74da439cec4e708caad3b561e4298, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -458,6 +470,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4338758277323892807}
     m_Modifications:
+    - target: {fileID: 1213300975003447748, guid: 1bc74da439cec4e708caad3b561e4298, type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1213300975003447749, guid: 1bc74da439cec4e708caad3b561e4298, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -531,6 +547,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4338758277323892807}
     m_Modifications:
+    - target: {fileID: 1213300975003447748, guid: 1bc74da439cec4e708caad3b561e4298, type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1213300975003447749, guid: 1bc74da439cec4e708caad3b561e4298, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -604,6 +624,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4338758277323892807}
     m_Modifications:
+    - target: {fileID: 1213300975003447748, guid: 1bc74da439cec4e708caad3b561e4298, type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1213300975003447749, guid: 1bc74da439cec4e708caad3b561e4298, type: 3}
       propertyPath: m_RootOrder
       value: 5

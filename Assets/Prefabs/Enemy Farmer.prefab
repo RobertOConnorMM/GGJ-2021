@@ -111,6 +111,7 @@ MonoBehaviour:
   weaponTransform: {fileID: 624388593588782485}
   throwingSpeed: 8
   attackRange: 8
+  attackInterval: 5
   hurtSound: {fileID: 8300000, guid: bb13abef071fc4caea53ee4e6f251e33, type: 3}
   spawnSound: {fileID: 8300000, guid: 9a8fc3ccd3e63421bb5b6f6e93785fd9, type: 3}
   throwSound: {fileID: 8300000, guid: 5c4dd07a78b1a45fe8d39a9be25387cd, type: 3}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawn : MonoBehaviour
 {
   [SerializeField]
-  private GameObject enemyPrefab;
+  private GameObject[] enemyPrefabs;
   private float spawnFrequency = 10f;
   public int spawnLimit = 1;
   public int spawnCount = 0;
@@ -13,16 +13,26 @@ public class EnemySpawn : MonoBehaviour
 
   public void SpawnEnemy()
   {
-    GameObject itemObject = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+    var index = Random.Range(0, enemyPrefabs.Length - 1);
+
+    Instantiate(
+      enemyPrefabs[index],
+      transform.position,
+      Quaternion.identity
+    );
   }
 
-  public void StartNextWave() {
-    if(!hasStarted) {
+  public void StartNextWave()
+  {
+    if (!hasStarted)
+    {
       spawnLimit = 1;
       spawnCount = 0;
       StartCoroutine(SpawnEnemyTimer(3f));
       hasStarted = true;
-    } else {
+    }
+    else
+    {
       spawnLimit++;
     }
   }
@@ -35,7 +45,9 @@ public class EnemySpawn : MonoBehaviour
     if (spawnCount < spawnLimit)
     {
       StartCoroutine(SpawnEnemyTimer(spawnFrequency));
-    } else {
+    }
+    else
+    {
       hasStarted = false;
     }
   }

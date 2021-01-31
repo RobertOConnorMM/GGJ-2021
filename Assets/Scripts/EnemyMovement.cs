@@ -6,7 +6,8 @@ using UnityEngine.AI;
 enum EnemyState
 {
   Seek,
-  FindWeapon
+  FindWeapon,
+  Idle
 }
 
 public class EnemyMovement : MonoBehaviour
@@ -18,8 +19,9 @@ public class EnemyMovement : MonoBehaviour
   public float knockbackUpwardsMomentum = -.5f;
   public GameObject weapon;
   public Transform weaponTransform;
-  public float throwingSpeed = 12f;
+  public float throwingSpeed = 5f;
   public float attackRange = 5f;
+  public float attackInterval = 10f;
 
   private float currentHealth;
 
@@ -52,11 +54,16 @@ public class EnemyMovement : MonoBehaviour
 
     currentHealth = health;
 
-    InvokeRepeating("Think", 0, 2f);
+    InvokeRepeating("Think", 0, attackInterval);
   }
 
   void Update()
   {
+    if (enemyState == EnemyState.Idle)
+    {
+      return;
+    }
+
     // Walk to weapon or player
     if (enemyState == EnemyState.FindWeapon)
     {
@@ -115,6 +122,7 @@ public class EnemyMovement : MonoBehaviour
 
     if (!isWeaponAttached)
     {
+      rigidbody.AddForce(-rigidbody.velocity, ForceMode.VelocityChange);
       return;
     }
 
@@ -137,6 +145,8 @@ public class EnemyMovement : MonoBehaviour
       weaponTransform.forward * throwingSpeed,
       ForceMode.Impulse
     );
+
+    enemyState = EnemyState.Idle;
   }
 
   public void OnHit(float damage)
