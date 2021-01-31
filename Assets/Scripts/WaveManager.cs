@@ -44,8 +44,9 @@ public class WaveManager : MonoBehaviour
 
     public void UpdateWave() {
         UIManager.Instance.UpdateWaveText(currentWave);
+
         for(int i = 0; i < currentWave*2; i++) {
-            spawns[Random.Range(0, spawns.Length)].StartNextWave(currentWave);
+            spawns[Random.Range(0, spawns.Length)].StartNextWave();
         }
     }
 }
