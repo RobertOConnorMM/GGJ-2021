@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
   public Transform weaponTransform;
   public float throwingSpeed = 5f;
   public float attackRange = 5f;
-  public float attackInterval = 10f;
+  public float attackInterval = 15f;
 
   private float currentHealth;
 
