@@ -37,6 +37,7 @@ public class LostAndFoundBox : MonoBehaviour
   {
     int newItemId = Random.Range(0, 4);
     weaponItemIds.Add(newItemId);
+    UIManager.Instance.UpdateItemCountText(weaponItemIds.Count);
   }
 
   public int TakeItem()
@@ -45,6 +46,7 @@ public class LostAndFoundBox : MonoBehaviour
     {
       int itemId = weaponItemIds[0];
       weaponItemIds.RemoveAt(0);
+      UIManager.Instance.UpdateItemCountText(weaponItemIds.Count);
       return itemId;
     }
     else

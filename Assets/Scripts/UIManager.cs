@@ -7,16 +7,18 @@ using System;
 
 public class UIManager : MonoBehaviour
 {
-  public int countdown = 60;
+  public int countdown = 600;
   public int waveCooldown = 10;
   private int currWaveCooldown = 10;
   public TextMeshProUGUI timerText;
   public TextMeshProUGUI instructionText;
   public TextMeshProUGUI waveText;
   public TextMeshProUGUI waveCooldownText;
+  public TextMeshProUGUI itemCountText;
+  public TextMeshProUGUI winText;
 
   [SerializeField]
-  private GameObject winPanel, wavePanel, fadePanel;
+  private GameObject winPanel, wavePanel, fadePanel, HUDPanel;
 
   [SerializeField]
   private bool isTutorial;
@@ -36,6 +38,7 @@ public class UIManager : MonoBehaviour
   {
     winPanel?.SetActive(false);
     fadePanel?.SetActive(true);
+    HUDPanel?.SetActive(false);
     waveText.text = "";
     waveCooldownText.text = "";
 
@@ -43,6 +46,7 @@ public class UIManager : MonoBehaviour
     {
       StartCoroutine(UpdateCountdown());
       waveText.text = "Wave 1";
+      HUDPanel?.SetActive(true);
     }
     currWaveCooldown = waveCooldown;
   }
@@ -60,7 +64,7 @@ public class UIManager : MonoBehaviour
   private void UpdateTimerText()
   {
     var timeSpan = TimeSpan.FromSeconds(countdown);
-    timerText.text = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
+    timerText.text = ""+countdown;
   }
 
   private IEnumerator UpdateCountdown()
@@ -122,9 +126,18 @@ public class UIManager : MonoBehaviour
     }
   }
 
+  public void LoseGame() {
+    winText.text = "YOU LOSE!!!";
+    ShowWinPanel();
+  }
+
   public void OnCollectFlashLight()
   {
     hasFlashlight = true;
     instructionText.text = "Ok, now you're ready!";
+  }
+
+  public void UpdateItemCountText(int amount) {
+    itemCountText.text = ""+amount;
   }
 }

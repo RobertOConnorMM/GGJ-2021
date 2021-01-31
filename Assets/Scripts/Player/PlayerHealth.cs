@@ -51,5 +51,9 @@ public class PlayerHealth : MonoBehaviour
 
     var healthRatio = currentHealth == 0 ? 0 : currentHealth / health;
     healthBarTranslate = -((healthBar.rect.width - borderSize) * (1 - healthRatio));
+
+    if(currentHealth <= 0) {
+      UIManager.Instance.LoseGame();
+    }
   }
 }
