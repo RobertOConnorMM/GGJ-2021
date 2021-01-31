@@ -35,7 +35,7 @@ public class LostAndFoundBox : MonoBehaviour
 
   private void AddRandomItemToBox()
   {
-    int newItemId = Random.Range(0, 4);
+    int newItemId = Random.Range(0, 6);
     weaponItemIds.Add(newItemId);
     UIManager.Instance.UpdateItemCountText(weaponItemIds.Count);
   }

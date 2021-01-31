@@ -8,4 +8,5 @@ public class WeaponScriptableObject : ScriptableObject
     public GameObject book;
     public GameObject wallet;
     public GameObject ipad;
+    public GameObject baton;
 }
