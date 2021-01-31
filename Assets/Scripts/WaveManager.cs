@@ -12,6 +12,11 @@ public class WaveManager : MonoBehaviour
     private int waveThreeEnemyCount = 6;
     public int enemiesKilled = 0;
 
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip hurtSound;
+    [SerializeField]
+    private AudioClip waveCompleteSound;
     
     public void Awake()
     {
@@ -19,23 +24,27 @@ public class WaveManager : MonoBehaviour
     }
 
     void Start()
-    {
+    {   
+        audioSource = GetComponent<AudioSource>();
         currentWave = 1;
         enemiesKilled = 0;
         UpdateWave();
     }
 
     public void AddEnemyKillCount() {
+        audioSource.PlayOneShot(hurtSound, 1f);
         enemiesKilled++;
         if(enemiesKilled >= waveThreeEnemyCount + waveTwoEnemyCount + waveOneEnemyCount) {
             UIManager.Instance.ShowWinPanel();
         } else if(enemiesKilled >= waveTwoEnemyCount + waveOneEnemyCount) {
             if(currentWave != 3) {
+                audioSource.PlayOneShot(waveCompleteSound, 1f);
                 UIManager.Instance.StartWaveCooldown();
             }
             currentWave = 3;
         } else if(enemiesKilled >= waveOneEnemyCount) {
             if(currentWave != 2) {
+                audioSource.PlayOneShot(waveCompleteSound, 1f);
                 UIManager.Instance.StartWaveCooldown();
             }
             currentWave = 2;
@@ -44,8 +53,9 @@ public class WaveManager : MonoBehaviour
 
     public void UpdateWave() {
         UIManager.Instance.UpdateWaveText(currentWave);
+
         for(int i = 0; i < currentWave*2; i++) {
-            spawns[Random.Range(0, spawns.Length)].StartNextWave(currentWave);
+            spawns[Random.Range(0, spawns.Length)].StartNextWave();
         }
     }
 }

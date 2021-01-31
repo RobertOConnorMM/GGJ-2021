@@ -41,6 +41,6 @@ public class PauseManager : MonoBehaviour
     public void OnExitPress() {
         Time.timeScale = 1f;
         isPaused = false;
-        Application.Quit();
+        SceneManager.LoadScene(2);
     }
 }

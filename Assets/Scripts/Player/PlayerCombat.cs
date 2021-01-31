@@ -85,6 +85,11 @@ public class PlayerCombat : MonoBehaviour
 
     int newItemId = box.TakeItem();
 
+    if(newItemId == -1) {
+      box.HideUI();
+      return;
+    }
+
     GameObject gameObjectPrefab;
     if (newItemId == WeaponIDs.UMBRELLA)
     {
@@ -168,7 +173,7 @@ public class PlayerCombat : MonoBehaviour
       ForceMode.Impulse
     );
 
-
+    grabbedItem.GetComponent<WeaponItem>().isInHand = false;
     ReleaseItem();
     playerSpeech.PlayThrowSound();
   }

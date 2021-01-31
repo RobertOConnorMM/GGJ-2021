@@ -112,6 +112,7 @@ MonoBehaviour:
   throwingSpeed: 12
   attackRange: 8
   hurtSound: {fileID: 8300000, guid: bb13abef071fc4caea53ee4e6f251e33, type: 3}
+  hitParticlesPrefab: {fileID: 3084987144483954892, guid: 12e39a542cd5145f2a752a58c4883bd5, type: 3}
 --- !u!54 &9033484737761209626
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -139,7 +140,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

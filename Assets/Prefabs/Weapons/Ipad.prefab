@@ -79,6 +79,8 @@ MonoBehaviour:
   name: Ipad
   power: 3
   durability: 1
+  highlightMaterial: {fileID: 2100000, guid: d288f0c4087f747c78ce2b589f5f27e2, type: 2}
+  renderer: {fileID: 3035035915820519393}
 --- !u!1001 &4036053547838156091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175,5 +177,10 @@ PrefabInstance:
 --- !u!4 &4577988375640034000 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a658aa0440b584d1a988666a00752ff4, type: 3}
+  m_PrefabInstance: {fileID: 4036053547838156091}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3035035915820519393 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7918335002988649766, guid: a658aa0440b584d1a988666a00752ff4, type: 3}
   m_PrefabInstance: {fileID: 4036053547838156091}
   m_PrefabAsset: {fileID: 0}

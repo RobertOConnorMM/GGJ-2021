@@ -67,11 +67,6 @@ public class LostAndFoundBox : MonoBehaviour
     if (weaponItemIds.Count < 5)
     {
       AddRandomItemToBox();
-      print("New item added to box!");
-    }
-    else
-    {
-      print("Box is already full.");
     }
 
     StartCoroutine(RegenerateItemInBox());
