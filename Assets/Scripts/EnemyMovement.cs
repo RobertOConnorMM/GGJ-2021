@@ -56,8 +56,6 @@ public class EnemyMovement : MonoBehaviour
 
   void Update()
   {
-
-
     // Walk to weapon or player
     if (enemyState == EnemyState.FindWeapon)
     {
