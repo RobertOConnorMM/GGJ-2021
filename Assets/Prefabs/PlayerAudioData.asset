@@ -18,3 +18,5 @@ MonoBehaviour:
   startFirstLevel: {fileID: 8300000, guid: 9d56c270b77df4ddb923b0823f407894, type: 3}
   throwSound: {fileID: 8300000, guid: 5c4dd07a78b1a45fe8d39a9be25387cd, type: 3}
   pickupSound: {fileID: 8300000, guid: e43c714868e58464bbeb46ecde9c564a, type: 3}
+  footstep: {fileID: 8300000, guid: b02b125d0dc4c401d9051e81e9da69de, type: 3}
+  footstep2: {fileID: 8300000, guid: 92956379ccd6e4524974b73822fc0b2e, type: 3}
