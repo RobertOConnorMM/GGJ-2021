@@ -19,6 +19,8 @@ public class EnemyMovement : MonoBehaviour
   [SerializeField]
   private AudioClip hurtSound;
 
+  public GameObject hitParticlesPrefab;
+
   private NavMeshAgent navMeshAgent;
 
   private bool isDead
@@ -53,6 +55,8 @@ public class EnemyMovement : MonoBehaviour
 
     currentHealth -= damage;
     audioSource.PlayOneShot(hurtSound, 1f);
+    GameObject particles = Instantiate(hitParticlesPrefab, transform.position, Quaternion.identity);
+    Destroy(particles, 1.5f);
 
     if (currentHealth <= 0)
     {
