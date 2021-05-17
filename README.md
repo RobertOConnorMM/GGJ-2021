@@ -1,5 +1,7 @@
 # GGJ-2021
 
+Play it here: https://teamlightguard.itch.io/lightguard
+
 --> security guard; defend a building by using only stuff from lost and found box
 --> luigi's mansion, flashlight idea (see trailer video) -> to find stuff
 --> player is a guard (multiplayer: more guards)
